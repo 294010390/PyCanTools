@@ -1,0 +1,1432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>526</width>
+    <height>436</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="statusTip">
+   <string>CAN Status:Bus off</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>501</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>CAN State</string>
+    </property>
+    <widget class="QLabel" name="label_canerr">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>50</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Source/ok.jpg);
+border-image: url(:/Source/error.jpg);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_canok">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>50</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Source/ok.jpg);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>17</y>
+       <width>476</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="2" colspan="2">
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>13</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="4">
+       <widget class="QComboBox" name="comboBox_2">
+        <item>
+         <property name="text">
+          <string>PCAN_DNGBUS1</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Refresh</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="7">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="text">
+         <string>Initialize</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="text">
+         <string>Release</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Baudrate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>18</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="4">
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>1 MBit/sec</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>800 kBit/sec</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>500 kBit/sec</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>250 kBit/sec</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>125 kBit/sec</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>100 kBit/sec</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="5" colspan="4">
+       <spacer name="horizontalSpacer_7">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>268</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>ConfigFile</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" colspan="2">
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>13</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="4" colspan="4">
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+      <item row="2" column="8">
+       <widget class="QPushButton" name="pushButton_7">
+        <property name="text">
+         <string>ChooseFile</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>HardWare</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>191</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>State Control</string>
+    </property>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>20</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>165</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>PowerKey</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>18</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="2" colspan="2">
+       <widget class="QComboBox" name="comboBox_5">
+        <item>
+         <property name="text">
+          <string>Off</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Acc</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Run</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Crank</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="QRadioButton" name="radioButton">
+        <property name="text">
+         <string>OpenDriverDoor</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <spacer name="horizontalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>48</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>491</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="SWC">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>20</y>
+        <width>201</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton_13">
+         <property name="text">
+          <string>Phone</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <spacer name="horizontalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton_14">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButton_15">
+         <property name="text">
+          <string>Vol +</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <spacer name="horizontalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pushButton_16">
+         <property name="text">
+          <string>Vol -</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButton_17">
+         <property name="text">
+          <string>Previous</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <spacer name="horizontalSpacer_12">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="pushButton_18">
+         <property name="text">
+          <string>Next</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="pushButton_19">
+         <property name="text">
+          <string>SRC</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <spacer name="horizontalSpacer_13">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>128</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="RVC">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>231</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Set Warning icon</string>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>220</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <spacer name="horizontalSpacer_15">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>13</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_3">
+          <item>
+           <property name="text">
+            <string>Zone1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone4</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_4">
+          <item>
+           <property name="text">
+            <string>Zone1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone4</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_6">
+          <item>
+           <property name="text">
+            <string>Zone1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Zone4</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_16">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>13</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>231</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Set Guideline</string>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>21</y>
+         <width>211</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0" colspan="2">
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>GL_Left</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2" colspan="2">
+         <widget class="QPushButton" name="pushButton_5">
+          <property name="text">
+           <string>GL_Right</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Set_GL_Val</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="2">
+         <spacer name="horizontalSpacer_14">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>13</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLineEdit" name="lineEdit_2"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_7">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>201</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Set Text</string>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>163</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>13</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox">
+          <property name="text">
+           <string>RVC Unavailable</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_2">
+          <property name="text">
+           <string>Guideline Unavailable</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_3">
+          <property name="text">
+           <string>No Guideline</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_4">
+          <property name="text">
+           <string>Park Symbol Unavailable</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>18</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>120</y>
+      <width>291</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Speed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_5">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>18</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Temp</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLineEdit" name="lineEdit_6">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="text">
+         <string>Chime</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="3">
+       <spacer name="horizontalSpacer_17">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="4">
+       <spacer name="horizontalSpacer_18">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>526</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>btnHwRefresh_Click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>264</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>310</x>
+     <y>28</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>btnInit_Click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>446</x>
+     <y>29</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>btnRelease_Click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>517</x>
+     <y>58</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>chooseFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>123</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>527</x>
+     <y>123</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_5</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Powerkeychanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_5</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setVehicleSpeed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>327</x>
+     <y>191</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>355</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openDriverDoorchanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>9</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_13</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Phonepress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>85</x>
+     <y>301</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_13</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Phonerelease()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>129</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>10</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_15</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_VolPluspress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>101</x>
+     <y>346</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>12</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_15</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_VolPlusrelease()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>128</x>
+     <y>342</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>10</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_17</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Previouspress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>381</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>10</x>
+     <y>398</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_17</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Previousrelease()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>116</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>12</x>
+     <y>427</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_14</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Mutepress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>220</x>
+     <y>303</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>251</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_14</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Muterelease()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>197</x>
+     <y>305</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>533</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_16</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_VolMinuspress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>352</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>311</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_16</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_VolMinusrelease()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>208</x>
+     <y>346</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>340</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_18</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Nextpress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>531</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_18</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_Nextrelease()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>190</x>
+     <y>382</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_19</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_SRCpress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>131</x>
+     <y>416</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>453</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_19</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SWC_SRCrelease()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>416</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_6</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sendTemp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>461</x>
+     <y>190</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sendChime()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>348</x>
+     <y>221</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>529</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>GL_left()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>312</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>16</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>GL_right()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>310</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>13</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_2</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>set_GL_value()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>342</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>455</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_3</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Rigion1Zoonechanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>93</x>
+     <y>403</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>53</x>
+     <y>466</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_4</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Rigion2Zoonechanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>170</x>
+     <y>408</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>124</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_6</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Rigion3Zoonechanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>406</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>187</x>
+     <y>466</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RVCunavailable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>354</x>
+     <y>321</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>533</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_2</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>GLunavailable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>402</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>548</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_3</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>NoGuideline()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>383</x>
+     <y>366</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>545</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_4</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>parkSymbolunavailable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>389</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>542</x>
+     <y>413</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>btnHwRefresh_Click()</slot>
+  <slot>btnInit_Click()</slot>
+  <slot>btnRelease_Click()</slot>
+  <slot>chooseFile()</slot>
+  <slot>setVehicleSpeed()</slot>
+  <slot>Powerkeychanged()</slot>
+  <slot>openDriverDoorchanged()</slot>
+  <slot>GL_left()</slot>
+  <slot>GL_right()</slot>
+  <slot>set_GL_value()</slot>
+  <slot>Rigion1Zoonechanged()</slot>
+  <slot>Rigion2Zoonechanged()</slot>
+  <slot>Rigion3Zoonechanged()</slot>
+  <slot>RVCunavailable()</slot>
+  <slot>GLunavailable()</slot>
+  <slot>NoGuideline()</slot>
+  <slot>parkSymbolunavailable()</slot>
+  <slot>SWC_Phonepress()</slot>
+  <slot>SWC_Mutepress()</slot>
+  <slot>SWC_VolPluspress()</slot>
+  <slot>SWC_VolMinuspress()</slot>
+  <slot>SWC_Previouspress()</slot>
+  <slot>SWC_Nextpress()</slot>
+  <slot>SWC_Nextrelease()</slot>
+  <slot>SWC_Phonerelease()</slot>
+  <slot>SWC_Muterelease()</slot>
+  <slot>SWC_VolPlusrelease()</slot>
+  <slot>SWC_VolMinusrelease()</slot>
+  <slot>SWC_Previousrelease()</slot>
+  <slot>SWC_SRCrelease()</slot>
+  <slot>SWC_SRCpress()</slot>
+  <slot>sendChime()</slot>
+  <slot>sendTemp()</slot>
+  <slot>slot1()</slot>
+ </slots>
+</ui>
