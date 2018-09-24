@@ -1,379 +1,379 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'test.ui'
+# Form implementation generated from reading ui file 'test_home.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
-from PCANBasic import *  ## PCAN-Basic library import
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QTimer
+from PyQt5.QtWidgets import QMessageBox
+from PCANBasic import *  ## PCAN-Basic library import
 
 class Ui_MainWindow(object):
     def __init__(self):
         # Parent's configuration
+        self.LogTest = 1
+        self.project = None
+        self.baudrate = PCAN_BAUD_500K
+        self.flg = {"Canstate":0, "initsuccess":0, "Confsuccess":0, "IGState":0, "RVCOn":0, "Cancelalltimer":0}
+        self.timerflg = {"Powertimer":0, "Positiontimer":0, "tmptimer":0, "speedtimer":0, "ParkSysmboltimer":0,
+                         "Guidelinetimer":0}
+        # self.timerlist = [self.Powertimer, self.Positiontimer, self.tmptimer, self.speedtimer]
         self.m_objPCANBasic = PCANBasic()
         self.m_PcanHandle = PCAN_NONEBUS
         self.m_CHANNELS = {'PCAN_DNGBUS1': PCAN_DNGBUS1, 'PCAN_USBBUS1': PCAN_USBBUS1, 'PCAN_USBBUS2': PCAN_USBBUS2, }
-        self.m_BAUDRATES = {'1 MBit/sec': PCAN_BAUD_1M, '800 kBit/sec': PCAN_BAUD_800K, '500 kBit/sec': PCAN_BAUD_500K,
+        self.m_BAUDRATES = {'1 MBit/sec': PCAN_BAUD_1M, '500 kBit/sec': PCAN_BAUD_500K,
                             '250 kBit/sec': PCAN_BAUD_250K,
                             '125 kBit/sec': PCAN_BAUD_125K}
-
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(526, 436)
+        MainWindow.setObjectName("PCAN Tool")
+        MainWindow.resize(519, 388)
+        MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(10, 10, 501, 111))
+        self.groupBox.setGeometry(QtCore.QRect(10, 10, 491, 91))
         self.groupBox.setObjectName("groupBox")
-        self.label_canerr = QtWidgets.QLabel(self.groupBox)
-        self.label_canerr.setGeometry(QtCore.QRect(410, 50, 31, 20))
-        self.label_canerr.setStyleSheet("border-image: url(:/Source/ok.jpg);\n"
-"border-image: url(:/Source/error.jpg);")
-        self.label_canerr.setText("")
-        self.label_canerr.setObjectName("label_canerr")
-        self.label_canok = QtWidgets.QLabel(self.groupBox)
-        self.label_canok.setGeometry(QtCore.QRect(410, 50, 31, 21))
-        self.label_canok.setStyleSheet("border-image: url(:/Source/ok.jpg);")
-        self.label_canok.setText("")
-        self.label_canok.setObjectName("label_canok")
+        self.label_6 = QtWidgets.QLabel(self.groupBox)
+        self.label_6.setGeometry(QtCore.QRect(390, 59, 54, 16))
+        self.label_6.setObjectName("label_6")
+        # self.CANOK = QtWidgets.QLabel(self.groupBox)
+        # self.CANOK.setGeometry(QtCore.QRect(450, 50, 31, 31))
+        # self.CANOK.setStyleSheet("border-image: url(:/Source/ok.jpg);")
+        # self.CANOK.setText("")
+        # self.CANOK.setObjectName("CANOK")
+        # self.CANErr = QtWidgets.QLabel(self.groupBox)
+        # self.CANErr.setGeometry(QtCore.QRect(450, 60, 31, 21))
+        # self.CANErr.setStyleSheet("border-image: url(:/Source/error.jpg);")
+        # self.CANErr.setText("")
+        # self.CANErr.setObjectName("CANErr")
+        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_2.setGeometry(QtCore.QRect(180, 53, 75, 23))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_3.setGeometry(QtCore.QRect(320, 54, 61, 23))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton.setGeometry(QtCore.QRect(180, 23, 75, 23))
+        self.pushButton.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.pushButton.setObjectName("pushButton")
         self.widget = QtWidgets.QWidget(self.groupBox)
-        self.widget.setGeometry(QtCore.QRect(10, 17, 476, 80))
+        self.widget.setGeometry(QtCore.QRect(11, 23, 153, 22))
         self.widget.setObjectName("widget")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.widget)
-        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        spacerItem = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem, 0, 2, 1, 2)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.label = QtWidgets.QLabel(self.widget)
+        self.label.setObjectName("label")
+        self.horizontalLayout_3.addWidget(self.label)
         self.comboBox_2 = QtWidgets.QComboBox(self.widget)
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItem("")
-        self.gridLayout_4.addWidget(self.comboBox_2, 0, 4, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(self.widget)
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout_4.addWidget(self.pushButton, 0, 5, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem1, 0, 6, 1, 1)
-        self.pushButton_2 = QtWidgets.QPushButton(self.widget)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout_4.addWidget(self.pushButton_2, 0, 7, 1, 1)
-        self.pushButton_3 = QtWidgets.QPushButton(self.widget)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.gridLayout_4.addWidget(self.pushButton_3, 0, 8, 1, 1)
-        self.label_2 = QtWidgets.QLabel(self.widget)
+        self.horizontalLayout_3.addWidget(self.comboBox_2)
+        self.widget1 = QtWidgets.QWidget(self.groupBox)
+        self.widget1.setGeometry(QtCore.QRect(12, 53, 148, 22))
+        self.widget1.setObjectName("widget1")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.widget1)
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.label_10 = QtWidgets.QLabel(self.widget1)
+        self.label_10.setObjectName("label_10")
+        self.horizontalLayout_4.addWidget(self.label_10)
+        self.comboBox_8 = QtWidgets.QComboBox(self.widget1)
+        self.comboBox_8.setFocusPolicy(QtCore.Qt.WheelFocus)
+        self.comboBox_8.setObjectName("comboBox_8")
+        self.comboBox_8.addItem("")
+        self.comboBox_8.addItem("")
+        self.comboBox_8.addItem("")
+        self.comboBox_8.addItem("")
+        self.comboBox_8.addItem("")
+        self.horizontalLayout_4.addWidget(self.comboBox_8)
+        self.widget2 = QtWidgets.QWidget(self.groupBox)
+        self.widget2.setGeometry(QtCore.QRect(329, 25, 154, 22))
+        self.widget2.setObjectName("widget2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget2)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.label_2 = QtWidgets.QLabel(self.widget2)
         self.label_2.setObjectName("label_2")
-        self.gridLayout_4.addWidget(self.label_2, 1, 0, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem2, 1, 1, 1, 2)
-        self.comboBox = QtWidgets.QComboBox(self.widget)
+        self.horizontalLayout_2.addWidget(self.label_2)
+        self.comboBox = QtWidgets.QComboBox(self.widget2)
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.gridLayout_4.addWidget(self.comboBox, 1, 4, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(268, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem3, 1, 5, 1, 4)
-        self.label_10 = QtWidgets.QLabel(self.widget)
-        self.label_10.setObjectName("label_10")
-        self.gridLayout_4.addWidget(self.label_10, 2, 0, 1, 2)
-        spacerItem4 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_4.addItem(spacerItem4, 2, 2, 1, 2)
-        self.lineEdit = QtWidgets.QLineEdit(self.widget)
-        self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout_4.addWidget(self.lineEdit, 2, 4, 1, 4)
-        self.pushButton_7 = QtWidgets.QPushButton(self.widget)
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.gridLayout_4.addWidget(self.pushButton_7, 2, 8, 1, 1)
-        self.label = QtWidgets.QLabel(self.widget)
-        self.label.setObjectName("label")
-        self.gridLayout_4.addWidget(self.label, 0, 0, 1, 2)
+        self.horizontalLayout_2.addWidget(self.comboBox)
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setGeometry(QtCore.QRect(10, 120, 191, 80))
+        self.groupBox_2.setGeometry(QtCore.QRect(10, 110, 261, 80))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.label_7 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_7.setGeometry(QtCore.QRect(210, 20, 60, 16))
-        self.label_7.setText("")
-        self.label_7.setObjectName("label_7")
-        self.widget1 = QtWidgets.QWidget(self.groupBox_2)
-        self.widget1.setGeometry(QtCore.QRect(10, 20, 165, 48))
-        self.widget1.setObjectName("widget1")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.widget1)
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.label_9 = QtWidgets.QLabel(self.widget1)
+        self.comboBox_7 = QtWidgets.QComboBox(self.groupBox_2)
+        self.comboBox_7.setGeometry(QtCore.QRect(70, 51, 61, 20))
+        self.comboBox_7.setObjectName("comboBox_7")
+        self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
+        self.label_3 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_3.setGeometry(QtCore.QRect(11, 51, 48, 16))
+        self.label_3.setObjectName("label_3")
+        self.radioButton = QtWidgets.QRadioButton(self.groupBox_2)
+        self.radioButton.setGeometry(QtCore.QRect(150, 24, 107, 16))
+        self.radioButton.setObjectName("radioButton")
+        self.label_9 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_9.setGeometry(QtCore.QRect(11, 21, 48, 16))
         self.label_9.setObjectName("label_9")
-        self.gridLayout_3.addWidget(self.label_9, 0, 0, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_3.addItem(spacerItem5, 0, 1, 1, 1)
-        self.comboBox_5 = QtWidgets.QComboBox(self.widget1)
+        self.comboBox_5 = QtWidgets.QComboBox(self.groupBox_2)
+        self.comboBox_5.setGeometry(QtCore.QRect(70, 20, 61, 20))
         self.comboBox_5.setObjectName("comboBox_5")
         self.comboBox_5.addItem("")
         self.comboBox_5.addItem("")
         self.comboBox_5.addItem("")
         self.comboBox_5.addItem("")
-        self.gridLayout_3.addWidget(self.comboBox_5, 0, 2, 1, 2)
-        self.radioButton = QtWidgets.QRadioButton(self.widget1)
-        self.radioButton.setObjectName("radioButton")
-        self.gridLayout_3.addWidget(self.radioButton, 1, 0, 1, 3)
-        spacerItem6 = QtWidgets.QSpacerItem(48, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_3.addItem(spacerItem6, 1, 3, 1, 1)
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(20, 200, 491, 191))
+        self.tabWidget.setGeometry(QtCore.QRect(10, 200, 501, 181))
         self.tabWidget.setObjectName("tabWidget")
-        self.SWC = QtWidgets.QWidget()
-        self.SWC.setObjectName("SWC")
-        self.widget2 = QtWidgets.QWidget(self.SWC)
-        self.widget2.setGeometry(QtCore.QRect(40, 20, 201, 131))
-        self.widget2.setObjectName("widget2")
-        self.gridLayout = QtWidgets.QGridLayout(self.widget2)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setObjectName("gridLayout")
-        self.pushButton_13 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_13.setObjectName("pushButton_13")
-        self.gridLayout.addWidget(self.pushButton_13, 0, 0, 1, 1)
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem7, 0, 1, 1, 1)
-        self.pushButton_14 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_14.setObjectName("pushButton_14")
-        self.gridLayout.addWidget(self.pushButton_14, 0, 2, 1, 1)
-        self.pushButton_15 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_15.setObjectName("pushButton_15")
-        self.gridLayout.addWidget(self.pushButton_15, 1, 0, 1, 1)
-        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem8, 1, 1, 1, 1)
-        self.pushButton_16 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_16.setObjectName("pushButton_16")
-        self.gridLayout.addWidget(self.pushButton_16, 1, 2, 1, 1)
-        self.pushButton_17 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_17.setObjectName("pushButton_17")
-        self.gridLayout.addWidget(self.pushButton_17, 2, 0, 1, 1)
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem9, 2, 1, 1, 1)
-        self.pushButton_18 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_18.setObjectName("pushButton_18")
-        self.gridLayout.addWidget(self.pushButton_18, 2, 2, 1, 1)
-        self.pushButton_19 = QtWidgets.QPushButton(self.widget2)
-        self.pushButton_19.setObjectName("pushButton_19")
-        self.gridLayout.addWidget(self.pushButton_19, 3, 0, 1, 1)
-        spacerItem10 = QtWidgets.QSpacerItem(128, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem10, 3, 1, 1, 2)
-        self.tabWidget.addTab(self.SWC, "")
         self.RVC = QtWidgets.QWidget()
         self.RVC.setObjectName("RVC")
         self.groupBox_4 = QtWidgets.QGroupBox(self.RVC)
         self.groupBox_4.setGeometry(QtCore.QRect(20, 100, 231, 51))
         self.groupBox_4.setObjectName("groupBox_4")
-        self.widget3 = QtWidgets.QWidget(self.groupBox_4)
-        self.widget3.setGeometry(QtCore.QRect(10, 20, 220, 22))
-        self.widget3.setObjectName("widget3")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget3)
+        self.layoutWidget = QtWidgets.QWidget(self.groupBox_4)
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 20, 220, 22))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem11 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem11)
-        self.comboBox_3 = QtWidgets.QComboBox(self.widget3)
+        spacerItem = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.comboBox_3 = QtWidgets.QComboBox(self.layoutWidget)
         self.comboBox_3.setObjectName("comboBox_3")
         self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
         self.horizontalLayout.addWidget(self.comboBox_3)
-        self.comboBox_4 = QtWidgets.QComboBox(self.widget3)
+        self.comboBox_4 = QtWidgets.QComboBox(self.layoutWidget)
         self.comboBox_4.setObjectName("comboBox_4")
         self.comboBox_4.addItem("")
         self.comboBox_4.addItem("")
         self.comboBox_4.addItem("")
         self.comboBox_4.addItem("")
+        self.comboBox_4.addItem("")
         self.horizontalLayout.addWidget(self.comboBox_4)
-        self.comboBox_6 = QtWidgets.QComboBox(self.widget3)
+        self.comboBox_6 = QtWidgets.QComboBox(self.layoutWidget)
         self.comboBox_6.setObjectName("comboBox_6")
         self.comboBox_6.addItem("")
         self.comboBox_6.addItem("")
         self.comboBox_6.addItem("")
         self.comboBox_6.addItem("")
+        self.comboBox_6.addItem("")
         self.horizontalLayout.addWidget(self.comboBox_6)
-        spacerItem12 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem12)
+        spacerItem1 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
         self.groupBox_3 = QtWidgets.QGroupBox(self.RVC)
         self.groupBox_3.setGeometry(QtCore.QRect(20, 10, 231, 80))
         self.groupBox_3.setObjectName("groupBox_3")
-        self.widget4 = QtWidgets.QWidget(self.groupBox_3)
-        self.widget4.setGeometry(QtCore.QRect(11, 21, 211, 51))
-        self.widget4.setObjectName("widget4")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.widget4)
+        self.layoutWidget1 = QtWidgets.QWidget(self.groupBox_3)
+        self.layoutWidget1.setGeometry(QtCore.QRect(11, 21, 211, 51))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget1)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.pushButton_4 = QtWidgets.QPushButton(self.widget4)
+        self.pushButton_4 = QtWidgets.QPushButton(self.layoutWidget1)
         self.pushButton_4.setObjectName("pushButton_4")
         self.gridLayout_2.addWidget(self.pushButton_4, 0, 0, 1, 2)
-        self.pushButton_5 = QtWidgets.QPushButton(self.widget4)
+        self.pushButton_5 = QtWidgets.QPushButton(self.layoutWidget1)
         self.pushButton_5.setObjectName("pushButton_5")
         self.gridLayout_2.addWidget(self.pushButton_5, 0, 2, 1, 2)
-        self.label_4 = QtWidgets.QLabel(self.widget4)
+        self.label_4 = QtWidgets.QLabel(self.layoutWidget1)
         self.label_4.setObjectName("label_4")
         self.gridLayout_2.addWidget(self.label_4, 1, 0, 1, 1)
-        spacerItem13 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem13, 1, 1, 1, 2)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.widget4)
+        spacerItem2 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem2, 1, 1, 1, 2)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.layoutWidget1)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.gridLayout_2.addWidget(self.lineEdit_2, 1, 3, 1, 1)
         self.groupBox_7 = QtWidgets.QGroupBox(self.RVC)
         self.groupBox_7.setGeometry(QtCore.QRect(270, 10, 201, 141))
         self.groupBox_7.setObjectName("groupBox_7")
-        self.widget5 = QtWidgets.QWidget(self.groupBox_7)
-        self.widget5.setGeometry(QtCore.QRect(20, 20, 163, 111))
-        self.widget5.setObjectName("widget5")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget5)
+        self.layoutWidget2 = QtWidgets.QWidget(self.groupBox_7)
+        self.layoutWidget2.setGeometry(QtCore.QRect(20, 20, 163, 111))
+        self.layoutWidget2.setObjectName("layoutWidget2")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget2)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        spacerItem14 = QtWidgets.QSpacerItem(20, 13, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem14)
-        self.checkBox = QtWidgets.QCheckBox(self.widget5)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 13, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem3)
+        self.checkBox = QtWidgets.QCheckBox(self.layoutWidget2)
         self.checkBox.setObjectName("checkBox")
         self.verticalLayout.addWidget(self.checkBox)
-        self.checkBox_2 = QtWidgets.QCheckBox(self.widget5)
+        self.checkBox_2 = QtWidgets.QCheckBox(self.layoutWidget2)
         self.checkBox_2.setObjectName("checkBox_2")
         self.verticalLayout.addWidget(self.checkBox_2)
-        self.checkBox_3 = QtWidgets.QCheckBox(self.widget5)
+        self.checkBox_3 = QtWidgets.QCheckBox(self.layoutWidget2)
         self.checkBox_3.setObjectName("checkBox_3")
         self.verticalLayout.addWidget(self.checkBox_3)
-        self.checkBox_4 = QtWidgets.QCheckBox(self.widget5)
+        self.checkBox_4 = QtWidgets.QCheckBox(self.layoutWidget2)
         self.checkBox_4.setObjectName("checkBox_4")
         self.verticalLayout.addWidget(self.checkBox_4)
-        spacerItem15 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem15)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem4)
         self.tabWidget.addTab(self.RVC, "")
+        self.SWC = QtWidgets.QWidget()
+        self.SWC.setObjectName("SWC")
+        self.layoutWidget3 = QtWidgets.QWidget(self.SWC)
+        self.layoutWidget3.setGeometry(QtCore.QRect(40, 10, 241, 151))
+        self.layoutWidget3.setObjectName("layoutWidget3")
+        self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget3)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setObjectName("gridLayout")
+        self.pushButton_13 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_13.setObjectName("pushButton_13")
+        self.gridLayout.addWidget(self.pushButton_13, 0, 0, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem5, 0, 1, 1, 1)
+        self.pushButton_14 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_14.setObjectName("pushButton_14")
+        self.gridLayout.addWidget(self.pushButton_14, 0, 2, 1, 1)
+        self.pushButton_15 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_15.setObjectName("pushButton_15")
+        self.gridLayout.addWidget(self.pushButton_15, 1, 0, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem6, 1, 1, 1, 1)
+        self.pushButton_16 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_16.setObjectName("pushButton_16")
+        self.gridLayout.addWidget(self.pushButton_16, 1, 2, 1, 1)
+        self.pushButton_17 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_17.setObjectName("pushButton_17")
+        self.gridLayout.addWidget(self.pushButton_17, 2, 0, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem7, 2, 1, 1, 1)
+        self.pushButton_18 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_18.setObjectName("pushButton_18")
+        self.gridLayout.addWidget(self.pushButton_18, 2, 2, 1, 1)
+        self.pushButton_19 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_19.setObjectName("pushButton_19")
+        self.gridLayout.addWidget(self.pushButton_19, 3, 0, 1, 1)
+        spacerItem8 = QtWidgets.QSpacerItem(128, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem8, 3, 1, 1, 2)
+        self.tabWidget.addTab(self.SWC, "")
         self.groupBox_5 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_5.setGeometry(QtCore.QRect(220, 120, 291, 80))
+        self.groupBox_5.setGeometry(QtCore.QRect(290, 110, 221, 80))
         self.groupBox_5.setObjectName("groupBox_5")
-        self.widget6 = QtWidgets.QWidget(self.groupBox_5)
-        self.widget6.setGeometry(QtCore.QRect(10, 20, 271, 51))
-        self.widget6.setObjectName("widget6")
-        self.gridLayout_5 = QtWidgets.QGridLayout(self.widget6)
-        self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_5.setObjectName("gridLayout_5")
-        self.label_8 = QtWidgets.QLabel(self.widget6)
-        self.label_8.setObjectName("label_8")
-        self.gridLayout_5.addWidget(self.label_8, 0, 0, 1, 1)
-        self.lineEdit_5 = QtWidgets.QLineEdit(self.widget6)
-        self.lineEdit_5.setText("")
-        self.lineEdit_5.setObjectName("lineEdit_5")
-        self.gridLayout_5.addWidget(self.lineEdit_5, 0, 1, 1, 1)
-        spacerItem16 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_5.addItem(spacerItem16, 0, 2, 1, 1)
-        self.label_5 = QtWidgets.QLabel(self.widget6)
+        self.label_5 = QtWidgets.QLabel(self.groupBox_5)
+        self.label_5.setGeometry(QtCore.QRect(130, 21, 24, 16))
         self.label_5.setObjectName("label_5")
-        self.gridLayout_5.addWidget(self.label_5, 0, 3, 1, 1)
-        self.lineEdit_6 = QtWidgets.QLineEdit(self.widget6)
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.groupBox_5)
+        self.lineEdit_6.setGeometry(QtCore.QRect(160, 21, 51, 20))
         self.lineEdit_6.setText("")
         self.lineEdit_6.setObjectName("lineEdit_6")
-        self.gridLayout_5.addWidget(self.lineEdit_6, 0, 4, 1, 1)
-        self.pushButton_6 = QtWidgets.QPushButton(self.widget6)
+        self.pushButton_6 = QtWidgets.QPushButton(self.groupBox_5)
+        self.pushButton_6.setGeometry(QtCore.QRect(20, 47, 81, 23))
         self.pushButton_6.setObjectName("pushButton_6")
-        self.gridLayout_5.addWidget(self.pushButton_6, 1, 0, 1, 2)
-        spacerItem17 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_5.addItem(spacerItem17, 1, 2, 1, 1)
-        spacerItem18 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_5.addItem(spacerItem18, 1, 3, 1, 1)
-        spacerItem19 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_5.addItem(spacerItem19, 1, 4, 1, 1)
+        self.label_8 = QtWidgets.QLabel(self.groupBox_5)
+        self.label_8.setGeometry(QtCore.QRect(14, 21, 30, 16))
+        self.label_8.setObjectName("label_8")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.groupBox_5)
+        self.lineEdit_5.setGeometry(QtCore.QRect(50, 21, 51, 20))
+        self.lineEdit_5.setText("")
+        self.lineEdit_5.setObjectName("lineEdit_5")
         # MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 526, 23))
-        self.menubar.setObjectName("menubar")
-        # MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        # MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         self.pushButton.clicked.connect(MainWindow.btnHwRefresh_Click)
         self.pushButton_2.clicked.connect(MainWindow.btnInit_Click)
         self.pushButton_3.clicked.connect(MainWindow.btnRelease_Click)
-        self.pushButton_7.clicked.connect(MainWindow.chooseFile)
         self.comboBox_5.currentIndexChanged['int'].connect(MainWindow.Powerkeychanged)
-        self.lineEdit_5.textChanged['QString'].connect(MainWindow.setVehicleSpeed)
+        self.lineEdit_5.returnPressed.connect(MainWindow.setVehicleSpeed)
         self.radioButton.clicked['bool'].connect(MainWindow.openDriverDoorchanged)
         self.pushButton_13.pressed.connect(MainWindow.SWC_Phonepress)
-        self.pushButton_13.released.connect(MainWindow.SWC_Phonerelease)
+        self.pushButton_13.released.connect(MainWindow.SWC_release)
         self.pushButton_15.pressed.connect(MainWindow.SWC_VolPluspress)
-        self.pushButton_15.released.connect(MainWindow.SWC_VolPlusrelease)
+        self.pushButton_15.released.connect(MainWindow.SWC_release)
         self.pushButton_17.pressed.connect(MainWindow.SWC_Previouspress)
-        self.pushButton_17.released.connect(MainWindow.SWC_Previousrelease)
+        self.pushButton_17.released.connect(MainWindow.SWC_release)
         self.pushButton_14.pressed.connect(MainWindow.SWC_Mutepress)
-        self.pushButton_14.released.connect(MainWindow.SWC_Muterelease)
+        self.pushButton_14.released.connect(MainWindow.SWC_release)
         self.pushButton_16.pressed.connect(MainWindow.SWC_VolMinuspress)
-        self.pushButton_16.released.connect(MainWindow.SWC_VolMinusrelease)
+        self.pushButton_16.released.connect(MainWindow.SWC_release)
         self.pushButton_18.pressed.connect(MainWindow.SWC_Nextpress)
-        self.pushButton_18.released.connect(MainWindow.SWC_Nextrelease)
+        self.pushButton_18.released.connect(MainWindow.SWC_release)
         self.pushButton_19.pressed.connect(MainWindow.SWC_SRCpress)
-        self.pushButton_19.released.connect(MainWindow.SWC_SRCrelease)
+        self.pushButton_19.released.connect(MainWindow.SWC_release)
         self.lineEdit_6.returnPressed.connect(MainWindow.sendTemp)
         self.pushButton_6.clicked.connect(MainWindow.sendChime)
         self.pushButton_4.clicked.connect(MainWindow.GL_left)
         self.pushButton_5.clicked.connect(MainWindow.GL_right)
         self.lineEdit_2.returnPressed.connect(MainWindow.set_GL_value)
-        self.comboBox_3.currentIndexChanged['int'].connect(MainWindow.Rigion1Zoonechanged)
-        self.comboBox_4.currentIndexChanged['int'].connect(MainWindow.Rigion2Zoonechanged)
-        self.comboBox_6.currentIndexChanged['int'].connect(MainWindow.Rigion3Zoonechanged)
+        self.comboBox_3.currentIndexChanged['int'].connect(MainWindow.RigionZoonechanged)
+        self.comboBox_4.currentIndexChanged['int'].connect(MainWindow.RigionZoonechanged)
+        self.comboBox_6.currentIndexChanged['int'].connect(MainWindow.RigionZoonechanged)
         self.checkBox.clicked['bool'].connect(MainWindow.RVCunavailable)
         self.checkBox_2.clicked['bool'].connect(MainWindow.GLunavailable)
         self.checkBox_3.clicked['bool'].connect(MainWindow.NoGuideline)
         self.checkBox_4.clicked['bool'].connect(MainWindow.parkSymbolunavailable)
+        self.comboBox_8.currentTextChanged['QString'].connect(MainWindow.chooseProject)
+        self.comboBox.currentIndexChanged['int'].connect(MainWindow.setbaudrate)
+        self.comboBox_7.currentIndexChanged['int'].connect(MainWindow.setPosition)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "PCAN Tool"))
         MainWindow.setStatusTip(_translate("MainWindow", "CAN Status:Bus off"))
         self.groupBox.setTitle(_translate("MainWindow", "CAN State"))
-        self.comboBox_2.setItemText(0, _translate("MainWindow", "PCAN_DNGBUS1"))
-        self.pushButton.setText(_translate("MainWindow", "Refresh"))
+        self.label_6.setText(_translate("MainWindow", "CAN State"))
         self.pushButton_2.setText(_translate("MainWindow", "Initialize"))
         self.pushButton_3.setText(_translate("MainWindow", "Release"))
-        self.label_2.setText(_translate("MainWindow", "Baudrate"))
-        self.comboBox.setItemText(0, _translate("MainWindow", "1 MBit/sec"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "800 kBit/sec"))
-        self.comboBox.setItemText(2, _translate("MainWindow", "500 kBit/sec"))
-        self.comboBox.setItemText(3, _translate("MainWindow", "250 kBit/sec"))
-        self.comboBox.setItemText(4, _translate("MainWindow", "125 kBit/sec"))
-        self.comboBox.setItemText(5, _translate("MainWindow", "100 kBit/sec"))
-        self.label_10.setText(_translate("MainWindow", "ConfigFile"))
-        self.pushButton_7.setText(_translate("MainWindow", "ChooseFile"))
+        self.pushButton.setText(_translate("MainWindow", "Refresh"))
         self.label.setText(_translate("MainWindow", "HardWare"))
+        self.comboBox_2.setItemText(0, _translate("MainWindow", "PCAN_DNGBUS1"))
+        self.label_10.setText(_translate("MainWindow", "ConfigFile"))
+        self.comboBox_8.setItemText(0, _translate("MainWindow", "None"))
+        self.comboBox_8.setItemText(1, _translate("MainWindow", "NGI2.0Low"))
+        self.comboBox_8.setItemText(2, _translate("MainWindow", "K215/221"))
+        self.comboBox_8.setItemText(3, _translate("MainWindow", "K256"))
+        self.comboBox_8.setItemText(4, _translate("MainWindow", "K218"))
+        self.label_2.setText(_translate("MainWindow", "Baudrate"))
+        self.comboBox.setItemText(0, _translate("MainWindow", "500 kBit/sec"))
+        self.comboBox.setItemText(1, _translate("MainWindow", "1 MBit/sec"))
+        self.comboBox.setItemText(2, _translate("MainWindow", "250 kBit/sec"))
+        self.comboBox.setItemText(3, _translate("MainWindow", "100 kBit/sec"))
         self.groupBox_2.setTitle(_translate("MainWindow", "State Control"))
+        self.comboBox_7.setItemText(0, _translate("MainWindow", "Park"))
+        self.comboBox_7.setItemText(1, _translate("MainWindow", "Neutral"))
+        self.comboBox_7.setItemText(2, _translate("MainWindow", "Drive"))
+        self.comboBox_7.setItemText(3, _translate("MainWindow", "Reverse"))
+        self.comboBox_7.setItemText(4, _translate("MainWindow", "Invalid"))
+        self.label_3.setText(_translate("MainWindow", "Position"))
+        self.radioButton.setText(_translate("MainWindow", "OpenDriverDoor"))
         self.label_9.setText(_translate("MainWindow", "PowerKey"))
         self.comboBox_5.setItemText(0, _translate("MainWindow", "Off"))
         self.comboBox_5.setItemText(1, _translate("MainWindow", "Acc"))
         self.comboBox_5.setItemText(2, _translate("MainWindow", "Run"))
         self.comboBox_5.setItemText(3, _translate("MainWindow", "Crank"))
-        self.radioButton.setText(_translate("MainWindow", "OpenDriverDoor"))
-        self.pushButton_13.setText(_translate("MainWindow", "Phone"))
-        self.pushButton_14.setText(_translate("MainWindow", "Mute"))
-        self.pushButton_15.setText(_translate("MainWindow", "Vol +"))
-        self.pushButton_16.setText(_translate("MainWindow", "Vol -"))
-        self.pushButton_17.setText(_translate("MainWindow", "Previous"))
-        self.pushButton_18.setText(_translate("MainWindow", "Next"))
-        self.pushButton_19.setText(_translate("MainWindow", "SRC"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.SWC), _translate("MainWindow", "Tab 2"))
         self.groupBox_4.setTitle(_translate("MainWindow", "Set Warning icon"))
-        self.comboBox_3.setItemText(0, _translate("MainWindow", "Zone1"))
-        self.comboBox_3.setItemText(1, _translate("MainWindow", "Zone2"))
-        self.comboBox_3.setItemText(2, _translate("MainWindow", "Zone3"))
-        self.comboBox_3.setItemText(3, _translate("MainWindow", "Zone4"))
-        self.comboBox_4.setItemText(0, _translate("MainWindow", "Zone1"))
-        self.comboBox_4.setItemText(1, _translate("MainWindow", "Zone2"))
-        self.comboBox_4.setItemText(2, _translate("MainWindow", "Zone3"))
-        self.comboBox_4.setItemText(3, _translate("MainWindow", "Zone4"))
-        self.comboBox_6.setItemText(0, _translate("MainWindow", "Zone1"))
-        self.comboBox_6.setItemText(1, _translate("MainWindow", "Zone2"))
-        self.comboBox_6.setItemText(2, _translate("MainWindow", "Zone3"))
-        self.comboBox_6.setItemText(3, _translate("MainWindow", "Zone4"))
+        self.comboBox_3.setItemText(0, _translate("MainWindow", "None"))
+        self.comboBox_3.setItemText(1, _translate("MainWindow", "Zone1"))
+        self.comboBox_3.setItemText(2, _translate("MainWindow", "Zone2"))
+        self.comboBox_3.setItemText(3, _translate("MainWindow", "Zone3"))
+        self.comboBox_3.setItemText(4, _translate("MainWindow", "Zone4"))
+        self.comboBox_4.setItemText(0, _translate("MainWindow", "None"))
+        self.comboBox_4.setItemText(1, _translate("MainWindow", "Zone1"))
+        self.comboBox_4.setItemText(2, _translate("MainWindow", "Zone2"))
+        self.comboBox_4.setItemText(3, _translate("MainWindow", "Zone3"))
+        self.comboBox_4.setItemText(4, _translate("MainWindow", "Zone4"))
+        self.comboBox_6.setItemText(0, _translate("MainWindow", "None"))
+        self.comboBox_6.setItemText(1, _translate("MainWindow", "Zone1"))
+        self.comboBox_6.setItemText(2, _translate("MainWindow", "Zone2"))
+        self.comboBox_6.setItemText(3, _translate("MainWindow", "Zone3"))
+        self.comboBox_6.setItemText(4, _translate("MainWindow", "Zone4"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Set Guideline"))
         self.pushButton_4.setText(_translate("MainWindow", "GL_Left"))
         self.pushButton_5.setText(_translate("MainWindow", "GL_Right"))
@@ -383,12 +383,21 @@ class Ui_MainWindow(object):
         self.checkBox_2.setText(_translate("MainWindow", "Guideline Unavailable"))
         self.checkBox_3.setText(_translate("MainWindow", "No Guideline"))
         self.checkBox_4.setText(_translate("MainWindow", "Park Symbol Unavailable"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.RVC), _translate("MainWindow", "Tab 1"))
-        self.groupBox_5.setTitle(_translate("MainWindow", "Settings"))
-        self.label_8.setText(_translate("MainWindow", "Speed"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.RVC), _translate("MainWindow", "RVC"))
+        self.pushButton_13.setText(_translate("MainWindow", "Phone"))
+        self.pushButton_14.setText(_translate("MainWindow", "Mute"))
+        self.pushButton_15.setText(_translate("MainWindow", "Vol +"))
+        self.pushButton_16.setText(_translate("MainWindow", "Vol -"))
+        self.pushButton_17.setText(_translate("MainWindow", "Previous"))
+        self.pushButton_18.setText(_translate("MainWindow", "Next"))
+        self.pushButton_19.setText(_translate("MainWindow", "SRC"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.SWC), _translate("MainWindow", "SWC"))
+        self.groupBox_5.setTitle(_translate("MainWindow", "Others"))
         self.label_5.setText(_translate("MainWindow", "Temp"))
         self.pushButton_6.setText(_translate("MainWindow", "Chime"))
+        self.label_8.setText(_translate("MainWindow", "Speed"))
 
+# Can state
     def btnHwRefresh_Click(self):
         # Clears the Channel comboBox and fill it again with
         # the PCAN-Basic handles for no-Plug&Play hardware and
@@ -412,127 +421,1045 @@ class Ui_MainWindow(object):
                     items.append(name)
 
         items.sort()
-        print(items)
 
         _translate = QtCore.QCoreApplication.translate
         i = 0
         for name in items:
             self.comboBox_2.setItemText(i, _translate("MainWindow", name))
-            print(i)
+            if self.LogTest:
+                print(i)
             i += 1
             self.m_PcanHandle = self.m_CHANNELS[name]
 
     def btnInit_Click(self, MainWindow):
+        pic1 = QtGui.QPixmap("ok.jpg")
+        pic2 = QtGui.QPixmap("error1.jpg")
 
         _translate = QtCore.QCoreApplication.translate
-
-        baudrate = self.m_BAUDRATES['500 kBit/sec']
-
-        print(self.m_PcanHandle)
+        baudrate = self.baudrate
+        if self.LogTest:
+            print(self.m_PcanHandle)
 
         result = self.m_objPCANBasic.Initialize(self.m_PcanHandle, baudrate)
 
+        self.CANErr = QtWidgets.QLabel(self.groupBox)
+        self.CANErr.setGeometry(QtCore.QRect(450, 55, 31, 21))
+        self.CANErr.setStyleSheet("")
+        self.CANErr.setPixmap(pic2)
+        self.CANErr.setObjectName("CANErr")
+        self.CANErr.setScaledContents(True)
+        self.CANOK = QtWidgets.QLabel(self.groupBox)
+        self.CANOK.setGeometry(QtCore.QRect(450, 55, 31, 21))
+        self.CANOK.setStyleSheet("")
+        self.CANOK.setPixmap(pic1)
+        self.CANOK.setObjectName("CANOK")
+        self.CANOK.setScaledContents(True)
+
         if result != PCAN_ERROR_OK:
-            try:
-                MainWindow.setStatusTip(_translate("MainWindow", "CAN Status:Bus off"))
-            except:
-                print("No hardware")
-            print("init failed")
+            self.flg["initsuccess"] = 0
+            self.BTNstate()
+
+            if self.CANOK.isEnabled():
+                self.CANOK.hide()
+            self.CANErr.show()
+
+            if self.LogTest:
+                print("init failed")
         else:
             # Prepares the PCAN-Basic's PCAN-Trace file
             #
             self.ConfigureTraceFile()
-            MainWindow.setStatusTip(_translate("MainWindow", "CAN Status:Bus OK"))
-            print("init success")
+            # MainWindow.setStatusTip(_translate("MainWindow", "CAN Status:Bus OK"))
+            self.flg["initsuccess"] = 1
+            self.BTNstate()
+            self.comboBox_8.setCurrentIndex(0)  # 设置Project为None
+
+            if self.CANErr.isEnabled():
+                self.CANErr.hide()
+            self.CANOK.show()
+
+            if self.LogTest:
+                print("init success")
 
     def btnRelease_Click(self):
         # Releases a current connected PCAN-Basic channel
         #
-        self.m_objPCANBasic.Uninitialize(self.m_PcanHandle)
+        self.timerflg["Cancelalltimer"] = 1
+        self.cancelalltimer(state=self.timerflg["Cancelalltimer"])  # Cancel all timer
+        try:
+            self.m_objPCANBasic.Uninitialize(self.m_PcanHandle)
+            self.comboBox_2.setCurrentIndex(0)
+            self.flg["initsuccess"] = 0
+            self.flg["Confsuccess"] = 0
+            self.BTNstate()
+            if self.CANErr.isEnabled():
+                self.CANErr.hide()
+            if self.CANOK.isEnabled():
+                self.CANOK.hide()
+            if self.LogTest:
+                print("release success")
+        except:
+            self.flg["initsuccess"] = 1
+            self.BTNstate()
+            if self.LogTest:
+                print("release failed")
 
-    def chooseFile(self):
+
+
+    def setbaudrate(self):
+        self.baudrate = self.m_BAUDRATES[self.comboBox.currentText()]
+
+    def BTNstate(self):
+        if self.flg["initsuccess"]:
+            stsConnected = True
+            stsNotConnected = False
+        else:
+            stsConnected = False
+            stsNotConnected = True
+
+        if self.flg["Confsuccess"]:
+            stsFile = True
+            stsFilesuccess = False
+        else:
+            stsFile = False
+            stsFilesuccess = True
+
+        if self.flg["IGState"]:
+            stsIG = True
+        else:
+            stsIG = False
+
+        if self.flg["RVCOn"]:
+            stsRVC = True
+        else:
+            stsRVC = False
+
+        # Can state frame
+        self.comboBox_2.setEnabled(stsNotConnected)  # HW Combobox
+        self.pushButton.setEnabled(stsNotConnected)  # Refresh Button
+        self.pushButton_2.setEnabled(stsNotConnected)  # Initialize Button
+        self.pushButton_3.setEnabled(stsConnected)  # Release Button
+        self.comboBox.setEnabled(stsNotConnected)  # Baudrate
+        self.comboBox_8.setEnabled(stsConnected and stsFilesuccess)  # Config File
+        # self.pushButton_7.setEnabled(stsConnected)  # ChooseFile Button
+
+        # State Control
+        self.comboBox_5.setEnabled(stsConnected and stsFile)  # Power Combobox
+        self.comboBox_7.setEnabled(stsConnected and stsFile and stsIG)  # Position Combobox
+        self.radioButton.setEnabled(stsConnected and stsFile)  # Opendriverdoor Button
+
+        # Others
+        self.lineEdit_5.setEnabled(stsConnected and stsFile and stsIG)  # Speed Input box
+        self.lineEdit_6.setEnabled(stsConnected and stsFile and stsIG)  # Temperature input box
+        self.pushButton_6.setEnabled(stsConnected and stsFile)  # Chime Button
+
+        # SWC
+        self.pushButton_13.setEnabled(stsConnected and stsFile)  # SWC Button
+        self.pushButton_14.setEnabled(stsConnected and stsFile)  # SWC Button
+        self.pushButton_15.setEnabled(stsConnected and stsFile)  # SWC Button
+        self.pushButton_16.setEnabled(stsConnected and stsFile)  # SWC Button
+        self.pushButton_17.setEnabled(stsConnected and stsFile)  # SWC Button
+        self.pushButton_18.setEnabled(stsConnected and stsFile)  # SWC Button
+        self.pushButton_19.setEnabled(stsConnected and stsFile)  # SWC Button
+
+        # RVC
+        self.pushButton_4.setEnabled(stsConnected and stsFile and stsRVC)  # Guideline Button
+        self.pushButton_5.setEnabled(stsConnected and stsFile and stsRVC)  # Guideline Button
+        self.lineEdit_2.setEnabled(stsConnected and stsFile and stsRVC)  # Guideline input box
+        self.comboBox_3.setEnabled(stsConnected and stsFile and stsRVC)  # RVC warning symbol
+        self.comboBox_4.setEnabled(stsConnected and stsFile and stsRVC)  # RVC warning symbol
+        self.comboBox_6.setEnabled(stsConnected and stsFile and stsRVC)  # RVC warning symbol
+        self.checkBox.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
+        self.checkBox_2.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
+        self.checkBox_3.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
+        self.checkBox_4.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
+
+    def chooseProject(self):
         import json
+        import os
         global configdata
-        fileName, filetype = QtWidgets.QFileDialog.getOpenFileName(self,
-                                                                   "选取文件",
-                                                                   "C:/",
-                                                                   "All Files (*);;json Files (*.json)")  # 设置文件扩展名过滤,注意用双分号间隔
+        curproject = self.comboBox_8.currentText()
 
-        self.lineEdit.setText(fileName)
+        if curproject == 'K215/221':
+            filename = "K215"
+            self.project = 0
+        elif curproject == 'K256':
+            filename = "K256"
+            self.project = 1
+        elif curproject == 'K218':
+            filename = "K218"
+            self.project = 2
+        elif curproject == 'NGI2.0Low':
+            filename = "K215"
+            self.project = 3
+        else:
+            filename = "215"
+            self.project = 0
 
-        with open(fileName, 'r', encoding='utf-8') as json_file:
+        currentpath = os.getcwd()+'\\config.json'
+        # fileName, filetype = QtWidgets.QFileDialog.getOpenFileName(self,
+        #                                                            "选取文件",
+        #                                                            currentpath,
+        #                                                            "All Files (*);;json Files (*.json)")  # 设置文件扩展名过滤,注意用双分号间隔
+
+        with open(currentpath, 'r', encoding='utf-8') as json_file:
             try:
-                configdata = json.load(json_file)
-                print(configdata["Power"])
-                print(configdata['SWC_Mutepress'])
+                configdata0 = json.load(json_file)
+                configdata = configdata0[filename]
+                self.flg["Confsuccess"] = 1
+                self.BTNstate()
+                if self.LogTest:
+                    print("open success")
 
             except:
-                print("error json file")
+                self.flg["Confsuccess"] = 0
+                self.BTNstate()
+                self.show_criticalmessage("Error", "Enter Right Json file")
+                if self.LogTest:
+                    print("error json file")
 
-    def setVehicleSpeed(self):
-        pass
+    def Poweroperate(self):
+        global configdata
+        currentPowerMode = self.comboBox_5.currentText()
+
+        id = configdata["Power"]['signal']
+        datalen = len(configdata["Power"]['data'][currentPowerMode])
+        data = configdata["Power"]['data'][currentPowerMode]
+
+        __class__.WriteFrame(self, id, datalen, data)
+        if self.LogTest:
+            print("current power is " + currentPowerMode)
+
+        # if currentPowerMode != 'Off':
+        #     __class__.WriteFrame(self, id, datalen, data)
+        #
+        # else:
+        #     # self.Powertimer.stop()
+        #     pass
+        # self.Powertimer.killTimer(self.timer_id)
+
+        # print("send powerstate " + time.ctime()+" "+str(data))
 
     def Powerkeychanged(self):
         global configdata
 
-        id = configdata["Power"]['signal']
-        datalen = len(configdata["Power"]['data']["run"])
-        data = configdata["Power"]['data']["run"]
+        currentPowerMode = self.comboBox_5.currentText()
 
-        print(id)
-        print(datalen)
-        print(data)
+        id = configdata["Power"]['signal']
+        datalen = len(configdata["Power"]['data'][currentPowerMode])
+        data = configdata["Power"]['data'][currentPowerMode]
 
         __class__.WriteFrame(self, id, datalen, data)
 
-    def openDriverDoorchanged(self):
-        pass
+        if self.timerflg["Powertimer"]:
+            pass
+        else:
+            self.Powertimer = QTimer(self)  # 初始化一个定时器
+            self.Powertimer.timeout.connect(self.Poweroperate)  # 计时结束调用operate()方法
+            self.Powertimer.start(100)  # 设置计时间100ms隔并启动
 
-        # Setting
+            # 发送挡位信号
+            self.setPosition()
+
+            self.timerflg["Powertimer"] = 1
+
+        if currentPowerMode == "Run":
+            self.flg["IGState"] = 1
+            self.sendTemp()
+            self.setVehicleSpeed()
+        else:
+            self.flg["IGState"] = 0
+            # Cancel timer under Run mode
+            self.timerflg["Cancelalltimer"] = 0
+            self.cancelalltimer(state=self.timerflg["Cancelalltimer"])  # Cancel all timer
+
+        # Power == Run, Position == R, Change to RVC Mode
+        if self.comboBox_7.currentText() == "Reverse" and currentPowerMode == "Run":
+            self.flg["RVCOn"] = 1
+            self.sendguideline()
+        else:
+            self.flg["RVCOn"] = 0
+            if self.timerflg["Guidelinetimer"]:
+                self.Guidelinetimer.stop()
+
+        self.BTNstate()
+
+    def setPositiontimer(self):
+        global configdata
+        currentPosition = self.comboBox_7.currentText()
+
+        id = configdata["ParkPosition"]['signal']
+        datalen = len(configdata["ParkPosition"]['data'][currentPosition])
+        data = configdata["ParkPosition"]['data'][currentPosition]
+
+        __class__.WriteFrame(self, id, datalen, self.Positiondata)
+        if self.LogTest:
+            print("current Position is " + str(self.Positiondata))
+
+    def setPosition(self):
+        global configdata
+
+        currentPosition = self.comboBox_7.currentText()
+
+        id = configdata["ParkPosition"]['signal']
+        datalen = len(configdata["ParkPosition"]['data'][currentPosition])
+        data = configdata["ParkPosition"]['data'][currentPosition]
+
+        if self.project == 3:
+            if self.radioButton.isEnabled():
+                data[1] = "02"
+            else:
+                data[1] = "00"
+
+        self.Positiondata = data
+
+        __class__.WriteFrame(self, id, datalen, self.Positiondata)
+
+        if currentPosition == "Reverse" and self.comboBox_5.currentText() == "Run":
+            self.flg["RVCOn"] = 1
+            self.sendguideline()
+            self.BTNstate()
+        else:
+            self.flg["RVCOn"] = 0
+            self.BTNstate()
+            if self.timerflg["Guidelinetimer"]:
+                self.Guidelinetimer.stop()
+
+        if self.timerflg["Positiontimer"]:
+            pass
+        else:
+            self.Positiontimer = QTimer(self)  # 初始化一个定时器
+            self.Positiontimer.timeout.connect(self.setPositiontimer)  # 计时结束调用operate()方法
+            self.Positiontimer.start(100)  # 设置计时间100ms隔并启动
+
+            self.timerflg["Positiontimer"] = 1
+
+    def setGuidelinetimer(self):
+        global configdata
+
+        id = configdata["Set_GL_Val"]['signal']
+        datalen = len(configdata["Set_GL_Val"]['data'])
+        data = configdata["Set_GL_Val"]['data']
+
+        __class__.WriteFrame(self, id, datalen, self.Guidelinedata)
+        if self.LogTest:
+            print(id + "->" + str(self.Guidelinedata))
+
+    def sendguideline(self):
+        global configdata
+
+        id = configdata["Set_GL_Val"]['signal']
+        datalen = len(configdata["Set_GL_Val"]['data'])
+        data = configdata["Set_GL_Val"]['data']
+
+        self.Guidelinedata = []
+        newdata0 = []
+
+        currentGLvaluephys = self.lineEdit_2.text()
+        if currentGLvaluephys == "":
+            newdata0 = []
+            newdata0.append("00")
+            newdata0.append("00")
+        else:
+            currentGLvalue = round(float(currentGLvaluephys), 2)
+
+            if 0 <= currentGLvalue <= 2047.9:
+                Hexvalue = hex(int(16 * currentGLvalue))
+            else:
+                ConstValue0xFFFF = 65535+1
+                Hexvalue = hex(int(16 * currentGLvalue + ConstValue0xFFFF))
+
+            if len(Hexvalue) == 3:
+                newdata0.append("00")
+                newdata0.append(Hexvalue[-1])
+            elif len(Hexvalue) == 4:
+                newdata0.append("00")
+                newdata0.append(Hexvalue[2:])
+            elif len(Hexvalue) == 5:
+                newdata0.append(Hexvalue[2])
+                newdata0.append(Hexvalue[3:])
+            elif len(Hexvalue) == 6:
+                newdata0.append(Hexvalue[2:4])
+                newdata0.append(Hexvalue[4:])
+
+        if self.LogTest:
+            print("Changed Data is "+str(newdata0))
+
+        for i in range(len(data)):
+            if i == 1 or i == 2:
+                self.Guidelinedata.append(newdata0[i-1])
+            else:
+                self.Guidelinedata.append(data[i])
+
+        __class__.WriteFrame(self, id, datalen, self.Guidelinedata)
+
+        if self.timerflg["Guidelinetimer"]:
+            pass
+        else:
+            self.Guidelinetimer = QTimer(self)  # 初始化一个定时器
+            self.Guidelinetimer.timeout.connect(self.setGuidelinetimer)  # 计时结束调用operate()方法
+            self.Guidelinetimer.start(100)  # 设置计时间100ms隔并启动
+
+            self.timerflg["Guidelinetimer"] = 1
+
+    def cancelalltimer(self, state):
+        if state == True:
+            if self.timerflg["Powertimer"]:
+                self.Powertimer.stop()
+                self.timerflg["Powertimer"] = 0
+            if self.timerflg["Positiontimer"]:
+                self.Positiontimer.stop()
+                self.timerflg["Positiontimer"] = 0
+
+            if self.timerflg["tmptimer"]:
+                self.tmptimer.stop()
+                self.timerflg["tmptimer"] = 0
+            if self.timerflg["speedtimer"]:
+                self.speedtimer.stop()
+                self.timerflg["speedtimer"] = 0
+            if self.timerflg["Guidelinetimer"]:
+                self.Guidelinetimer.stop()
+                self.timerflg["Guidelinetimer"] = 0
+            if self.timerflg["ParkSysmboltimer"]:
+                self.ParkSysmboltimer.stop()
+                self.timerflg["ParkSysmboltimer"] = 0
+        elif self.comboBox_5.currentText() != "Run":
+            if self.timerflg["tmptimer"]:
+                self.tmptimer.stop()
+                self.timerflg["tmptimer"] = 0
+            if self.timerflg["speedtimer"]:
+                self.speedtimer.stop()
+                self.timerflg["speedtimer"] = 0
+            if self.timerflg["Guidelinetimer"]:
+                self.Guidelinetimer.stop()
+                self.timerflg["Guidelinetimer"] = 0
+            if self.timerflg["ParkSysmboltimer"]:
+                self.ParkSysmboltimer.stop()
+                self.timerflg["ParkSysmboltimer"] = 0
+
+
+    def openDriverDoorchanged(self):
+        global configdata
+
+        if self.radioButton.isChecked():
+            curstate = "Open"
+        else:
+            curstate = "Close"
+        id = configdata["OpenDD"]['signal']
+        datalen = len(configdata["OpenDD"]['data'][curstate])
+        data = configdata["OpenDD"]['data'][curstate]
+
+        if self.LogTest:
+            print(id+"->"+str(data))
+
+        __class__.WriteFrame(self, id, datalen, data)
+
+    # Others
 
     def sendChime(self):
-        pass
+        global configdata
+
+        id = configdata["SendChime"]['signal']
+        datalen = len(configdata["SendChime"]['data'])
+        data = configdata["SendChime"]['data']
+        if self.LogTest:
+            print(data)
+
+        __class__.WriteFrame(self, id, datalen, data)
+
+    def tempchanged(self):
+        global configdata
+
+        self.tmpcounter += 1
+
+        id = configdata["SetTemperature"][0]['signal']
+        datalen = len(configdata["SetTemperature"][0]['data'])
+        data = configdata["SetTemperature"][0]['data']
+
+        __class__.WriteFrame(self, id, datalen, self.newdata)
+        if self.LogTest:
+            print(id + "->" + str(self.newdata))
+
+        if self.tmpcounter % 10 == 0:
+            id = configdata["SetTemperature"][1]['signal']
+            datalen = len(configdata["SetTemperature"][1]['data'])
+            data = configdata["SetTemperature"][1]['data']
+
+            __class__.WriteFrame(self, id, datalen, data)
+            if self.LogTest:
+                print(id + "->" + str(data))
+
+        if self.project != 3:
+            if self.tmpcounter % 100 == 0:
+                id = configdata["SetTemperature"][2]['signal']
+                datalen = len(configdata["SetTemperature"][2]['data'])
+                data = configdata["SetTemperature"][2]['data']
+
+                __class__.WriteFrame(self, id, datalen, data)
+                if self.LogTest:
+                    print(id + "->" + str(data))
 
     def sendTemp(self):
-        pass
+        global configdata
 
-        # Guideline
+        try:
+            if self.lineEdit_6.text():
+                curtmpdata = round(float(self.lineEdit_6.text()), 2)
+            else:
+                curtmpdata = 0
+
+            if self.lineEdit_6.text() == "" and self.timerflg["tmptimer"]:
+                self.tmptimer.stop()
+            else:
+
+                if -40 <= curtmpdata <= 87.5:
+                    Hexvalue = hex(int(2 * (curtmpdata + 40)))
+
+                    id = configdata["SetTemperature"][0]['signal']
+                    datalen = len(configdata["SetTemperature"][0]['data'])
+                    data = configdata["SetTemperature"][0]['data']
+
+                    self.newdata = []
+                    for i in data:
+                        if i == "*":
+                            d = Hexvalue[2:]
+                            self.newdata.append(d)
+                        else:
+                            self.newdata.append(i)
+
+                    __class__.WriteFrame(self, id, datalen, self.newdata)
+                    if self.LogTest:
+                        print(id + "->" + str(self.newdata))
+
+                    id = configdata["SetTemperature"][1]['signal']
+                    datalen = len(configdata["SetTemperature"][1]['data'])
+                    data = configdata["SetTemperature"][1]['data']
+
+                    __class__.WriteFrame(self, id, datalen, data)
+                    if self.LogTest:
+                        print(id + "->" + str(data))
+
+                    id = configdata["SetTemperature"][2]['signal']
+                    datalen = len(configdata["SetTemperature"][2]['data'])
+                    data = configdata["SetTemperature"][2]['data']
+                    if self.LogTest:
+                        print(id + "->" + str(data))
+
+                    __class__.WriteFrame(self, id, datalen, data)
+
+                    if self.timerflg["tmptimer"]:
+                        pass
+                    else:
+                        self.tmptimer = QTimer(self)  # 初始化一个定时器
+                        self.tmpcounter = 0
+                        self.tmptimer.timeout.connect(self.tempchanged)  # 计时结束调用operate()方法
+                        self.tmptimer.start(10)  # 设置计时间100ms隔并启动
+
+                        self.timerflg["tmptimer"] = 1
+                else:
+                    self.show_warningmessage("Warning", "Enter normal number: -40~87.5 ")
+                    if self.LogTest:
+                        print("Enter Right Value")
+                    else:
+                        pass
+
+        except:
+            self.show_criticalmessage("Error", "Enter normal number: -40~87.5 ")
+            if self.LogTest:
+                print("Enter normal number")
+            else:
+                pass
+
+    def speedchanged(self):
+        id = configdata["SetSpeed"]['signal']
+        datalen = len(configdata["SetSpeed"]['data'])
+        data = configdata["SetSpeed"]['data']
+
+        __class__.WriteFrame(self, id, datalen, self.newspeeddata)
+
+        if self.LogTest:
+            print(id + "->" + str(self.newspeeddata))
+
+    def setVehicleSpeed(self):
+        global configdata
+
+        try:
+            if self.lineEdit_5.text():
+                curtmpdata = round(float(self.lineEdit_5.text()), 1)
+            else:
+                curtmpdata = 0
+
+            if self.lineEdit_5.text() == "" and self.timerflg["speedtimer"]:
+                self.tmptimer.stop()
+            else:
+                if self.project == 0:
+                    if 0 <= curtmpdata <= 510:
+                        Hexvalue = hex(int(64 * curtmpdata))
+
+                        id = configdata["SetSpeed"]['signal']
+                        datalen = len(configdata["SetSpeed"]['data'])
+                        data = configdata["SetSpeed"]['data']
+
+                        self.newspeeddata = []
+
+                        newdata0 = []
+                        if len(Hexvalue) == 3:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[-1])
+                        elif len(Hexvalue) == 4:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[2:])
+                        elif len(Hexvalue) == 5:
+                            newdata0.append(Hexvalue[2])
+                            newdata0.append(Hexvalue[3:])
+                        elif len(Hexvalue) == 6:
+                            newdata0.append(Hexvalue[2:4])
+                            newdata0.append(Hexvalue[4:])
+
+                        if self.LogTest:
+                            print(newdata0)
+
+                        j = 0
+                        for i in data:
+                            if i == "*":
+                                self.newspeeddata.append(newdata0[j])
+                                j += 1
+                            else:
+                                self.newspeeddata.append(i)
+
+                        __class__.WriteFrame(self, id, datalen, self.newspeeddata)
+                        if self.LogTest:
+                            print(id + "->" + str(self.newspeeddata))
+
+                        if self.timerflg["speedtimer"]:
+                            pass
+                        else:
+                            self.speedtimer = QTimer(self)  # 初始化一个定时器
+                            self.speedtimer.timeout.connect(self.speedchanged)  # 计时结束调用operate()方法
+                            self.speedtimer.start(100)  # 设置计时间100ms隔并启动
+
+                            self.timerflg["speedtimer"] = 1
+                    else:
+                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        if self.LogTest:
+                            print("Enter Right Speed Value")
+
+                if self.project == 1:
+                    if 0 <= curtmpdata <= 510:
+                        Hexvalue = hex(int(64 * curtmpdata))
+
+                        id = configdata["SetSpeed"]['signal']
+                        datalen = len(configdata["SetSpeed"]['data'])
+                        data = configdata["SetSpeed"]['data']
+
+                        self.newspeeddata = []
+
+                        newdata0 = []
+                        if len(Hexvalue) == 3:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[-1])
+                        elif len(Hexvalue) == 4:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[2:])
+                        elif len(Hexvalue) == 5:
+                            newdata0.append(Hexvalue[2])
+                            newdata0.append(Hexvalue[3:])
+                        elif len(Hexvalue) == 6:
+                            newdata0.append(Hexvalue[2:4])
+                            newdata0.append(Hexvalue[4:])
+
+                        if self.LogTest:
+                            print(newdata0)
+
+                        j = 0
+                        for i in data:
+                            if i == "*":
+                                self.newspeeddata.append(newdata0[j])
+                                j += 1
+                            else:
+                                self.newspeeddata.append(i)
+
+                        __class__.WriteFrame(self, id, datalen, self.newspeeddata)
+                        if self.LogTest:
+                            print(id + "->" + str(self.newspeeddata))
+
+                        if self.timerflg["speedtimer"]:
+                            pass
+                        else:
+                            self.speedtimer = QTimer(self)  # 初始化一个定时器
+                            self.speedtimer.timeout.connect(self.speedchanged)  # 计时结束调用operate()方法
+                            self.speedtimer.start(100)  # 设置计时间100ms隔并启动
+
+                            self.timerflg["speedtimer"] = 1
+                    else:
+                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        if self.LogTest:
+                            print("Enter Right Speed Value")
+
+                if self.project == 2:
+                    if 0 <= curtmpdata <= 510:
+                        Hexvalue = hex(int(64 * curtmpdata))
+
+                        id = configdata["SetSpeed"]['signal']
+                        datalen = len(configdata["SetSpeed"]['data'])
+                        data = configdata["SetSpeed"]['data']
+
+                        self.newspeeddata = []
+
+                        newdata0 = []
+                        if len(Hexvalue) == 3:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[-1])
+                        elif len(Hexvalue) == 4:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[2:])
+                        elif len(Hexvalue) == 5:
+                            newdata0.append(Hexvalue[2])
+                            newdata0.append(Hexvalue[3:])
+                        elif len(Hexvalue) == 6:
+                            newdata0.append(Hexvalue[2:4])
+                            newdata0.append(Hexvalue[4:])
+
+                        if self.LogTest:
+                            print(newdata0)
+
+                        j = 0
+                        for i in data:
+                            if i == "*":
+                                self.newspeeddata.append(newdata0[j])
+                                j += 1
+                            else:
+                                self.newspeeddata.append(i)
+
+                        __class__.WriteFrame(self, id, datalen, self.newspeeddata)
+                        if self.LogTest:
+                            print(id + "->" + str(self.newspeeddata))
+
+                        if self.timerflg["speedtimer"]:
+                            pass
+                        else:
+                            self.speedtimer = QTimer(self)  # 初始化一个定时器
+                            self.speedtimer.timeout.connect(self.speedchanged)  # 计时结束调用operate()方法
+                            self.speedtimer.start(100)  # 设置计时间100ms隔并启动
+
+                            self.timerflg["speedtimer"] = 1
+                    else:
+                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        if self.LogTest:
+                            print("Enter Right Speed Value")
+
+                if self.project == 3:
+                    if 0 <= curtmpdata <= 510:
+                        Hexvalue = hex(int(8 * curtmpdata))
+
+                        id = configdata["SetSpeed"]['signal']
+                        datalen = len(configdata["SetSpeed"]['data'])
+                        data = configdata["SetSpeed"]['data']
+
+                        self.newspeeddata = []
+
+                        newdata0 = []
+                        if len(Hexvalue) == 3:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[-1])
+                        elif len(Hexvalue) == 4:
+                            newdata0.append("00")
+                            newdata0.append(Hexvalue[2:])
+                        elif len(Hexvalue) == 5:
+                            newdata0.append(Hexvalue[2])
+                            newdata0.append(Hexvalue[3:])
+                        elif len(Hexvalue) == 6:
+                            newdata0.append(Hexvalue[2:4])
+                            newdata0.append(Hexvalue[4:])
+
+                        if self.LogTest:
+                            print(newdata0)
+
+                        j = 0
+                        for i in data:
+                            if i == "*":
+                                self.newspeeddata.append(newdata0[j])
+                                j += 1
+                            else:
+                                self.newspeeddata.append(i)
+
+                        __class__.WriteFrame(self, id, datalen, self.newspeeddata)
+                        if self.LogTest:
+                            print(id + "->" + str(self.newspeeddata))
+
+                        if self.timerflg["speedtimer"]:
+                            pass
+                        else:
+                            self.speedtimer = QTimer(self)  # 初始化一个定时器
+                            self.speedtimer.timeout.connect(self.speedchanged)  # 计时结束调用operate()方法
+                            self.speedtimer.start(100)  # 设置计时间100ms隔并启动
+
+                            self.timerflg["speedtimer"] = 1
+                    else:
+                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        if self.LogTest:
+                            print("Enter Right Speed Value")
+        except:
+            self.show_criticalmessage("Error", "Enter normal number: 0~500 ")
+            if self.LogTest:
+                print("Enter normal number")
+            else:
+                pass
+    # RVC & Guideline
 
     def GL_left(self):
-        pass
+
+        currentGLvaluephys = self.lineEdit_2.text()
+        if currentGLvaluephys == "" :
+            self.lineEdit_2.setText("50")
+        else:
+            currentGLvaluephys = self.lineEdit_2.text()
+            currentGLvaluephys = int(currentGLvaluephys)+50
+            self.lineEdit_2.setText(str(currentGLvaluephys))
+        self.sendguideline()
 
     def GL_right(self):
-        pass
+        currentGLvaluephys = self.lineEdit_2.text()
+        if currentGLvaluephys == "":
+            self.lineEdit_2.setText("-50")
+        else:
+            currentGLvaluephys = self.lineEdit_2.text()
+            currentGLvaluephys = int(currentGLvaluephys) - 50
+            self.lineEdit_2.setText(str(currentGLvaluephys))
+        self.sendguideline()
 
     def set_GL_value(self):
-        pass
+        self.sendguideline()
 
-    def Rigion1Zoonechanged(self):
-        pass
+    def setParkSysmboltimer(self):
+        id = configdata["Zone"]['signal']
+        datalen = len(configdata["Zone"]['data'])
+        data = configdata["Zone"]['data']
 
-    def Rigion2Zoonechanged(self):
-        pass
+        __class__.WriteFrame(self, id, datalen, self.ParkSysmboldata)
 
-    def Rigion3Zoonechanged(self):
-        pass
+        if self.LogTest:
+            print(id + "->" + str(self.ParkSysmboldata))
+
+    def RigionZoonechanged(self):
+        global configdata
+
+        currentZone1index = self.comboBox_3.currentIndex()
+        currentZone2index = self.comboBox_4.currentIndex()
+        currentZone3index = self.comboBox_6.currentIndex()
+
+        if self.LogTest:
+            print("current index is ", currentZone1index)
+            print("current index is ", currentZone2index)
+            print("current index is ", currentZone3index)
+
+        id = configdata["Zone"]['signal']
+        datalen = len(configdata["Zone"]['data'])
+        data = configdata["Zone"]['data']
+
+        self.ParkSysmboldata = []
+        for i in data:
+            if i == "**":
+                self.ParkSysmboldata.append(str(currentZone2index)+str(currentZone1index))
+            elif i == "0*":
+                self.ParkSysmboldata.append("0"+str(currentZone3index))
+            else:
+                self.ParkSysmboldata.append(i)
+
+        if self.LogTest:
+            print(self.ParkSysmboldata)
+
+        __class__.WriteFrame(self, id, datalen, self.ParkSysmboldata)
+
+        if self.timerflg["ParkSysmboltimer"]:
+            pass
+        else:
+            self.ParkSysmboltimer = QTimer(self)  # 初始化一个定时器
+            self.ParkSysmboltimer.timeout.connect(self.setParkSysmboltimer)  # 计时结束调用operate()方法
+            self.ParkSysmboltimer.start(10)  # 设置计时间100ms隔并启动
+
+            self.timerflg["ParkSysmboltimer"] = 1
+
+    # def Rigion2Zoonechanged(self):
+    #     global configdata
+    #
+    #     currentZone2index = self.comboBox_4.currentIndex()
+    #
+    #     if self.LogTest:
+    #         print("current index is ", currentZone2index)
+    #
+    #     id = configdata["Zone1"]['signal']
+    #     datalen = len(configdata["Zone1"]['data'])
+    #     data = configdata["Zone1"]['data']
+    #
+    #     self.ParkSysmboldata = []
+    #     for i in data:
+    #         if "*" in i:
+    #             self.ParkSysmboldata.append(str(currentZone2index)+i[1])
+    #         else:
+    #             self.ParkSysmboldata.append(i)
+    #
+    #     if self.LogTest:
+    #         print(self.ParkSysmboldata)
+    #
+    #     __class__.WriteFrame(self, id, datalen, self.ParkSysmboldata)
+    #
+    #     if self.timerflg["ParkSysmboltimer"]:
+    #         pass
+    #     else:
+    #         self.ParkSysmboltimer = QTimer(self)  # 初始化一个定时器
+    #         self.ParkSysmboltimer.timeout.connect(self.setParkSysmboltimer)  # 计时结束调用operate()方法
+    #         self.ParkSysmboltimer.start(10)  # 设置计时间100ms隔并启动
+    #
+    #         self.timerflg["ParkSysmboltimer"] = 1
+    #
+    # def Rigion3Zoonechanged(self):
+    #     pass
 
     def RVCunavailable(self):
-        pass
+        global configdata
+
+        if self.checkBox.isChecked():
+            id = configdata["RVCUnavailable"][0]['signal']
+            datalen = len(configdata["RVCUnavailable"][0]['data'])
+            self.Positiondata = configdata["RVCUnavailable"][0]['data']
+
+            self.comboBox_7.setCurrentIndex(4)
+
+            if self.LogTest:
+                print("current Combobox Position is ", str(self.comboBox_7.currentText()))
+                print("current Position is ", str(self.Positiondata))
+        else:
+            id = configdata["RVCUnavailable"][1]['signal']
+            datalen = len(configdata["RVCUnavailable"][1]['data'])
+            self.Positiondata = configdata["RVCUnavailable"][1]['data']
+
+            self.comboBox_7.setCurrentIndex(3)
+
+            if self.LogTest:
+                print("current Combobox Position is ", str(self.comboBox_7.currentText()))
+                print("current Position is ", str(self.Positiondata))
+
+        __class__.WriteFrame(self, id, datalen, self.Positiondata)
+
+        if self.timerflg["Positiontimer"]:
+            pass
+        else:
+            self.Positiontimer = QTimer(self)  # 初始化一个定时器
+            self.Positiontimer.timeout.connect(self.setPositiontimer)  # 计时结束调用operate()方法
+            self.Positiontimer.start(100)  # 设置计时间100ms隔并启动
+
+            self.timerflg["Positiontimer"] = 1
+
 
     def GLunavailable(self):
-        pass
+        global configdata
+
+        id = configdata["GLUnavailable"][0]['signal']
+        datalen = len(configdata["GLUnavailable"][0]['data'])
+
+        self.sendguideline()
+
+        if self.checkBox_2.isChecked():
+            self.Guidelinedata[0] = configdata["GLUnavailable"][0]['data'][0]
+        else:
+            self.Guidelinedata[0] = configdata["GLUnavailable"][1]['data'][0]
+
+        if self.LogTest:
+            if self.Guidelinedata[0] == "A0":
+                state = "Unavailable"
+                print("current GLUnavailable is ", state)
+            if self.Guidelinedata[0] == "20":
+                state = "Available"
+                print("current GLUnavailable is ", state)
+
+        __class__.WriteFrame(self, id, datalen, self.Guidelinedata)
+
+        if self.timerflg["Guidelinetimer"]:
+            pass
+        else:
+            self.Guidelinetimer = QTimer(self)  # 初始化一个定时器
+            self.Guidelinetimer.timeout.connect(self.setGuidelinetimer)  # 计时结束调用operate()方法
+            self.Guidelinetimer.start(100)  # 设置计时间100ms隔并启动
+
+            self.timerflg["Guidelinetimer"] = 1
 
     def NoGuideline(self):
-        pass
+        global configdata
+
+        id = configdata["No_GL"][0]['signal']
+        datalen = len(configdata["No_GL"][0]['data'])
+
+        self.sendguideline()
+
+        if self.checkBox_3.isChecked():
+            self.Guidelinedata[0] = configdata["No_GL"][0]['data'][0]
+        else:
+            self.Guidelinedata[0] = configdata["No_GL"][1]['data'][0]
+
+        if self.LogTest:
+            if self.Guidelinedata[0] == "00":
+                state = "No Guideline"
+                print("current Guideline is ", state)
+            if self.Guidelinedata[0] == "20":
+                state = "Available"
+                print("current Guideline is ", state)
+
+        __class__.WriteFrame(self, id, datalen, self.Guidelinedata)
+
+        if self.timerflg["Guidelinetimer"]:
+            pass
+        else:
+            self.Guidelinetimer = QTimer(self)  # 初始化一个定时器
+            self.Guidelinetimer.timeout.connect(self.setGuidelinetimer)  # 计时结束调用operate()方法
+            self.Guidelinetimer.start(100)  # 设置计时间100ms隔并启动
+
+            self.timerflg["Guidelinetimer"] = 1
 
     def parkSymbolunavailable(self):
-        pass
+        global configdata
+
+        id = configdata["ParkUnavailable"][0]['signal']
+        datalen = len(configdata["ParkUnavailable"][0]['data'])
+
+        self.RigionZoonechanged()
+
+        if self.checkBox_4.isChecked():
+            self.ParkSysmboldata[0] = configdata["ParkUnavailable"][0]['data'][0]
+        else:
+            self.ParkSysmboldata[0] = configdata["ParkUnavailable"][1]['data'][0]
+
+        if self.LogTest:
+            if self.ParkSysmboldata[0] == "20":
+                state = "unavailable"
+                print("current park Symbol is ", state)
+            if self.ParkSysmboldata[0] == "00":
+                state = "Available"
+                print("current park Symbol is ", state)
+
+        __class__.WriteFrame(self, id, datalen, self.ParkSysmboldata)
+
+        if self.timerflg["ParkSysmboltimer"]:
+            pass
+        else:
+            self.ParkSysmboltimer = QTimer(self)  # 初始化一个定时器
+            self.ParkSysmboltimer.timeout.connect(self.setParkSysmboltimer)  # 计时结束调用operate()方法
+            self.ParkSysmboltimer.start(10)  # 设置计时间100ms隔并启动
+
+            self.timerflg["ParkSysmboltimer"] = 1
+
+    # SWC
 
     def SWC_Phonepress(self):
-        pass
+        global configdata
 
-    def SWC_Phonerelease(self):
-        pass
+        id = configdata["SWC_Phonepress"]['signal']
+        datalen = len(configdata["SWC_Phonepress"]['data'])
+        data = configdata["SWC_Phonepress"]['data']
+
+        __class__.WriteFrame(self, id, datalen, data)
+        if self.LogTest:
+            print("SWC_Phonepress")
 
     def SWC_Mutepress(self):
         global configdata
@@ -541,57 +1468,81 @@ class Ui_MainWindow(object):
         datalen = len(configdata["SWC_Mutepress"]['data'])
         data = configdata["SWC_Mutepress"]['data']
 
-        print(id)
-        print(datalen)
-        print(data)
-
         __class__.WriteFrame(self, id, datalen, data)
-        print("SWC_Mutepress")
+        if self.LogTest:
+            print("SWC_Mutepress")
 
-    def SWC_Muterelease(self):
+    def SWC_release(self):
         global configdata
 
-        id = configdata["SWC_Muterelease"]['signal']
-        datalen = len(configdata["SWC_Muterelease"]['data'])
-        data = configdata["SWC_Muterelease"]['data']
-
-        print(id)
-        print(datalen)
-        print(data)
+        id = configdata["SWC_release"]['signal']
+        datalen = len(configdata["SWC_release"]['data'])
+        data = configdata["SWC_release"]['data']
+        if self.LogTest:
+            print(id)
+            print(datalen)
+            print(data)
 
         __class__.WriteFrame(self, id, datalen, data)
-        print("SWC_Muterelease")
+        if self.LogTest:
+            print("SWC_release")
 
     def SWC_VolPluspress(self):
-        pass
+        global configdata
 
-    def SWC_VolPlusrelease(self):
-        pass
+        id = configdata["SWC_VolPluspress"]['signal']
+        datalen = len(configdata["SWC_VolPluspress"]['data'])
+        data = configdata["SWC_VolPluspress"]['data']
+
+        __class__.WriteFrame(self, id, datalen, data)
+        if self.LogTest:
+            print("SWC_VolPluspress")
 
     def SWC_VolMinuspress(self):
-        pass
+        global configdata
 
-    def SWC_VolMinusrelease(self):
-        pass
+        id = configdata["SWC_VolMinuspress"]['signal']
+        datalen = len(configdata["SWC_VolMinuspress"]['data'])
+        data = configdata["SWC_VolMinuspress"]['data']
+
+        __class__.WriteFrame(self, id, datalen, data)
+        if self.LogTest:
+            print("SWC_VolMinuspress")
 
     def SWC_Previouspress(self):
-        pass
+        global configdata
 
-    def SWC_Previousrelease(self):
-        pass
+        id = configdata["SWC_Previouspress"]['signal']
+        datalen = len(configdata["SWC_Previouspress"]['data'])
+        data = configdata["SWC_Previouspress"]['data']
+
+        __class__.WriteFrame(self, id, datalen, data)
+        if self.LogTest:
+            print("SWC_Previouspress")
 
     def SWC_Nextpress(self):
-        pass
+        global configdata
 
-    def SWC_Nextrelease(self):
-        pass
+        id = configdata["SWC_Nextpress"]['signal']
+        datalen = len(configdata["SWC_Nextpress"]['data'])
+        data = configdata["SWC_Nextpress"]['data']
+
+        __class__.WriteFrame(self, id, datalen, data)
+        if self.LogTest:
+            print("SWC_Nextpress")
 
     def SWC_SRCpress(self):
-        pass
+        global configdata
 
-    def SWC_SRCrelease(self):
-        pass
+        id = configdata["SWC_SRCpress"]['signal']
+        datalen = len(configdata["SWC_SRCpress"]['data'])
+        data = configdata["SWC_SRCpress"]['data']
 
+        __class__.WriteFrame(self, id, datalen, data)
+        if self.LogTest:
+            print("SWC_SRCpress")
+
+    # Called function
     def WriteFrame(self, id, datalen, data):
         global configdata
         # We create a TPCANMsg message structure
@@ -607,8 +1558,6 @@ class Ui_MainWindow(object):
 
         for i in range(CANMsg.LEN):
             CANMsg.DATA[i] = int(data[i], 16)
-
-            print(CANMsg.DATA[i])
 
         # The message is sent to the configured hardware
         #
@@ -651,5 +1600,14 @@ class Ui_MainWindow(object):
     ## Includes a new line of text into the information Listview
     ##
     def IncludeTextMessage(self, strMsg):
-        print(strMsg)
+        if self.LogTest:
+            print(strMsg)
+        else:
+            pass
+
+    def show_criticalmessage(self, title, content):
+        QMessageBox.critical(self, title, content)
+
+    def show_warningmessage(self, title, content):
+        QMessageBox.warning(self, title, content)
 
