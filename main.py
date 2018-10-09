@@ -1,3 +1,6 @@
+# Author    : Zhang Jiankai
+# Version   : v1.0
+#
 import sys
 from test_home import Ui_MainWindow  # 这里的first是.ui文件生成的.py文件名
 from PyQt5 import QtWidgets
