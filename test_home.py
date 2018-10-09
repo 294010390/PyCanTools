@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'test_home.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.2
+# Created by: PyQt5 UI code generator 5.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -10,16 +10,21 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QMessageBox
 from PCANBasic import *  ## PCAN-Basic library import
+from time import sleep
+import os
 
 class Ui_MainWindow(object):
     def __init__(self):
         # Parent's configuration
         self.LogTest = 1
         self.project = None
+        self.curdir = os.getcwd()
+        self.projectlist = ["None", 'K215', 'K221', 'K218', 'K256', "NGI2_0Low"]
         self.baudrate = PCAN_BAUD_500K
-        self.flg = {"Canstate":0, "initsuccess":0, "Confsuccess":0, "IGState":0, "RVCOn":0, "Cancelalltimer":0}
-        self.timerflg = {"Powertimer":0, "Positiontimer":0, "tmptimer":0, "speedtimer":0, "ParkSysmboltimer":0,
-                         "Guidelinetimer":0}
+        self.flg = {"Canstate": 0, "initsuccess": 0, "Confsuccess": 0, "IGState": 0,
+                    "RVCOn": 0, "Cancelalltimer": 0, 'SendNM': 0}
+        self.timerflg = {"Powertimer": 0, "Positiontimer": 0, "tmptimer": 0, "speedtimer": 0, "ParkSysmboltimer": 0,
+                         "Guidelinetimer": 0}
         # self.timerlist = [self.Powertimer, self.Positiontimer, self.tmptimer, self.speedtimer]
         self.m_objPCANBasic = PCANBasic()
         self.m_PcanHandle = PCAN_NONEBUS
@@ -28,8 +33,8 @@ class Ui_MainWindow(object):
                             '250 kBit/sec': PCAN_BAUD_250K,
                             '125 kBit/sec': PCAN_BAUD_125K}
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("PCAN Tool")
-        MainWindow.resize(519, 388)
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(515, 391)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -37,7 +42,7 @@ class Ui_MainWindow(object):
         self.groupBox.setGeometry(QtCore.QRect(10, 10, 491, 91))
         self.groupBox.setObjectName("groupBox")
         self.label_6 = QtWidgets.QLabel(self.groupBox)
-        self.label_6.setGeometry(QtCore.QRect(390, 59, 54, 16))
+        self.label_6.setGeometry(QtCore.QRect(390, 58, 54, 16))
         self.label_6.setObjectName("label_6")
         # self.CANOK = QtWidgets.QLabel(self.groupBox)
         # self.CANOK.setGeometry(QtCore.QRect(450, 50, 31, 31))
@@ -59,29 +64,29 @@ class Ui_MainWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(180, 23, 75, 23))
         self.pushButton.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.pushButton.setObjectName("pushButton")
-        self.widget = QtWidgets.QWidget(self.groupBox)
-        self.widget.setGeometry(QtCore.QRect(11, 23, 153, 22))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(self.groupBox)
+        self.layoutWidget.setGeometry(QtCore.QRect(11, 23, 161, 22))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.label = QtWidgets.QLabel(self.widget)
+        self.label = QtWidgets.QLabel(self.layoutWidget)
         self.label.setObjectName("label")
         self.horizontalLayout_3.addWidget(self.label)
-        self.comboBox_2 = QtWidgets.QComboBox(self.widget)
+        self.comboBox_2 = QtWidgets.QComboBox(self.layoutWidget)
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItem("")
         self.horizontalLayout_3.addWidget(self.comboBox_2)
-        self.widget1 = QtWidgets.QWidget(self.groupBox)
-        self.widget1.setGeometry(QtCore.QRect(12, 53, 148, 22))
-        self.widget1.setObjectName("widget1")
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.widget1)
+        self.layoutWidget1 = QtWidgets.QWidget(self.groupBox)
+        self.layoutWidget1.setGeometry(QtCore.QRect(12, 53, 148, 22))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.layoutWidget1)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.label_10 = QtWidgets.QLabel(self.widget1)
+        self.label_10 = QtWidgets.QLabel(self.layoutWidget1)
         self.label_10.setObjectName("label_10")
         self.horizontalLayout_4.addWidget(self.label_10)
-        self.comboBox_8 = QtWidgets.QComboBox(self.widget1)
+        self.comboBox_8 = QtWidgets.QComboBox(self.layoutWidget1)
         self.comboBox_8.setFocusPolicy(QtCore.Qt.WheelFocus)
         self.comboBox_8.setObjectName("comboBox_8")
         self.comboBox_8.addItem("")
@@ -89,17 +94,18 @@ class Ui_MainWindow(object):
         self.comboBox_8.addItem("")
         self.comboBox_8.addItem("")
         self.comboBox_8.addItem("")
+        self.comboBox_8.addItem("")
         self.horizontalLayout_4.addWidget(self.comboBox_8)
-        self.widget2 = QtWidgets.QWidget(self.groupBox)
-        self.widget2.setGeometry(QtCore.QRect(329, 25, 154, 22))
-        self.widget2.setObjectName("widget2")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget2)
+        self.layoutWidget2 = QtWidgets.QWidget(self.groupBox)
+        self.layoutWidget2.setGeometry(QtCore.QRect(329, 25, 154, 22))
+        self.layoutWidget2.setObjectName("layoutWidget2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.layoutWidget2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.label_2 = QtWidgets.QLabel(self.widget2)
+        self.label_2 = QtWidgets.QLabel(self.layoutWidget2)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_2.addWidget(self.label_2)
-        self.comboBox = QtWidgets.QComboBox(self.widget2)
+        self.comboBox = QtWidgets.QComboBox(self.layoutWidget2)
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
@@ -120,9 +126,6 @@ class Ui_MainWindow(object):
         self.label_3 = QtWidgets.QLabel(self.groupBox_2)
         self.label_3.setGeometry(QtCore.QRect(11, 51, 48, 16))
         self.label_3.setObjectName("label_3")
-        self.radioButton = QtWidgets.QRadioButton(self.groupBox_2)
-        self.radioButton.setGeometry(QtCore.QRect(150, 24, 107, 16))
-        self.radioButton.setObjectName("radioButton")
         self.label_9 = QtWidgets.QLabel(self.groupBox_2)
         self.label_9.setGeometry(QtCore.QRect(11, 21, 48, 16))
         self.label_9.setObjectName("label_9")
@@ -133,6 +136,9 @@ class Ui_MainWindow(object):
         self.comboBox_5.addItem("")
         self.comboBox_5.addItem("")
         self.comboBox_5.addItem("")
+        self.checkBox_5 = QtWidgets.QCheckBox(self.groupBox_2)
+        self.checkBox_5.setGeometry(QtCore.QRect(150, 20, 101, 17))
+        self.checkBox_5.setObjectName("checkBox_5")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setGeometry(QtCore.QRect(10, 200, 501, 181))
         self.tabWidget.setObjectName("tabWidget")
@@ -141,31 +147,16 @@ class Ui_MainWindow(object):
         self.groupBox_4 = QtWidgets.QGroupBox(self.RVC)
         self.groupBox_4.setGeometry(QtCore.QRect(20, 100, 231, 51))
         self.groupBox_4.setObjectName("groupBox_4")
-        self.layoutWidget = QtWidgets.QWidget(self.groupBox_4)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 20, 220, 22))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
+        self.layoutWidget3 = QtWidgets.QWidget(self.groupBox_4)
+        self.layoutWidget3.setGeometry(QtCore.QRect(10, 20, 220, 22))
+        self.layoutWidget3.setObjectName("layoutWidget3")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget3)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.comboBox_3 = QtWidgets.QComboBox(self.layoutWidget)
-        self.comboBox_3.setObjectName("comboBox_3")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.horizontalLayout.addWidget(self.comboBox_3)
-        self.comboBox_4 = QtWidgets.QComboBox(self.layoutWidget)
-        self.comboBox_4.setObjectName("comboBox_4")
-        self.comboBox_4.addItem("")
-        self.comboBox_4.addItem("")
-        self.comboBox_4.addItem("")
-        self.comboBox_4.addItem("")
-        self.comboBox_4.addItem("")
-        self.horizontalLayout.addWidget(self.comboBox_4)
-        self.comboBox_6 = QtWidgets.QComboBox(self.layoutWidget)
+
+        self.comboBox_6 = QtWidgets.QComboBox(self.layoutWidget3)
         self.comboBox_6.setObjectName("comboBox_6")
         self.comboBox_6.addItem("")
         self.comboBox_6.addItem("")
@@ -173,52 +164,71 @@ class Ui_MainWindow(object):
         self.comboBox_6.addItem("")
         self.comboBox_6.addItem("")
         self.horizontalLayout.addWidget(self.comboBox_6)
+
+        self.comboBox_4 = QtWidgets.QComboBox(self.layoutWidget3)
+        self.comboBox_4.setObjectName("comboBox_4")
+        self.comboBox_4.addItem("")
+        self.comboBox_4.addItem("")
+        self.comboBox_4.addItem("")
+        self.comboBox_4.addItem("")
+        self.comboBox_4.addItem("")
+        self.horizontalLayout.addWidget(self.comboBox_4)
+
+        self.comboBox_3 = QtWidgets.QComboBox(self.layoutWidget3)
+        self.comboBox_3.setObjectName("comboBox_3")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.horizontalLayout.addWidget(self.comboBox_3)
+
         spacerItem1 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
         self.groupBox_3 = QtWidgets.QGroupBox(self.RVC)
         self.groupBox_3.setGeometry(QtCore.QRect(20, 10, 231, 80))
         self.groupBox_3.setObjectName("groupBox_3")
-        self.layoutWidget1 = QtWidgets.QWidget(self.groupBox_3)
-        self.layoutWidget1.setGeometry(QtCore.QRect(11, 21, 211, 51))
-        self.layoutWidget1.setObjectName("layoutWidget1")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget1)
+        self.layoutWidget4 = QtWidgets.QWidget(self.groupBox_3)
+        self.layoutWidget4.setGeometry(QtCore.QRect(11, 21, 211, 51))
+        self.layoutWidget4.setObjectName("layoutWidget4")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget4)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.pushButton_4 = QtWidgets.QPushButton(self.layoutWidget1)
+        self.pushButton_4 = QtWidgets.QPushButton(self.layoutWidget4)
         self.pushButton_4.setObjectName("pushButton_4")
         self.gridLayout_2.addWidget(self.pushButton_4, 0, 0, 1, 2)
-        self.pushButton_5 = QtWidgets.QPushButton(self.layoutWidget1)
+        self.pushButton_5 = QtWidgets.QPushButton(self.layoutWidget4)
         self.pushButton_5.setObjectName("pushButton_5")
         self.gridLayout_2.addWidget(self.pushButton_5, 0, 2, 1, 2)
-        self.label_4 = QtWidgets.QLabel(self.layoutWidget1)
+        self.label_4 = QtWidgets.QLabel(self.layoutWidget4)
         self.label_4.setObjectName("label_4")
         self.gridLayout_2.addWidget(self.label_4, 1, 0, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem2, 1, 1, 1, 2)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.layoutWidget1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.layoutWidget4)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.gridLayout_2.addWidget(self.lineEdit_2, 1, 3, 1, 1)
         self.groupBox_7 = QtWidgets.QGroupBox(self.RVC)
         self.groupBox_7.setGeometry(QtCore.QRect(270, 10, 201, 141))
         self.groupBox_7.setObjectName("groupBox_7")
-        self.layoutWidget2 = QtWidgets.QWidget(self.groupBox_7)
-        self.layoutWidget2.setGeometry(QtCore.QRect(20, 20, 163, 111))
-        self.layoutWidget2.setObjectName("layoutWidget2")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget2)
+        self.layoutWidget5 = QtWidgets.QWidget(self.groupBox_7)
+        self.layoutWidget5.setGeometry(QtCore.QRect(20, 20, 163, 111))
+        self.layoutWidget5.setObjectName("layoutWidget5")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget5)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         spacerItem3 = QtWidgets.QSpacerItem(20, 13, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem3)
-        self.checkBox = QtWidgets.QCheckBox(self.layoutWidget2)
+        self.checkBox = QtWidgets.QCheckBox(self.layoutWidget5)
         self.checkBox.setObjectName("checkBox")
         self.verticalLayout.addWidget(self.checkBox)
-        self.checkBox_2 = QtWidgets.QCheckBox(self.layoutWidget2)
+        self.checkBox_2 = QtWidgets.QCheckBox(self.layoutWidget5)
         self.checkBox_2.setObjectName("checkBox_2")
         self.verticalLayout.addWidget(self.checkBox_2)
-        self.checkBox_3 = QtWidgets.QCheckBox(self.layoutWidget2)
+        self.checkBox_3 = QtWidgets.QCheckBox(self.layoutWidget5)
         self.checkBox_3.setObjectName("checkBox_3")
         self.verticalLayout.addWidget(self.checkBox_3)
-        self.checkBox_4 = QtWidgets.QCheckBox(self.layoutWidget2)
+        self.checkBox_4 = QtWidgets.QCheckBox(self.layoutWidget5)
         self.checkBox_4.setObjectName("checkBox_4")
         self.verticalLayout.addWidget(self.checkBox_4)
         spacerItem4 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -226,37 +236,37 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.RVC, "")
         self.SWC = QtWidgets.QWidget()
         self.SWC.setObjectName("SWC")
-        self.layoutWidget3 = QtWidgets.QWidget(self.SWC)
-        self.layoutWidget3.setGeometry(QtCore.QRect(40, 10, 241, 151))
-        self.layoutWidget3.setObjectName("layoutWidget3")
-        self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget3)
+        self.layoutWidget6 = QtWidgets.QWidget(self.SWC)
+        self.layoutWidget6.setGeometry(QtCore.QRect(40, 10, 241, 151))
+        self.layoutWidget6.setObjectName("layoutWidget6")
+        self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget6)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton_13 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_13 = QtWidgets.QPushButton(self.layoutWidget6)
         self.pushButton_13.setObjectName("pushButton_13")
         self.gridLayout.addWidget(self.pushButton_13, 0, 0, 1, 1)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem5, 0, 1, 1, 1)
-        self.pushButton_14 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_14 = QtWidgets.QPushButton(self.layoutWidget6)
         self.pushButton_14.setObjectName("pushButton_14")
         self.gridLayout.addWidget(self.pushButton_14, 0, 2, 1, 1)
-        self.pushButton_15 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_15 = QtWidgets.QPushButton(self.layoutWidget6)
         self.pushButton_15.setObjectName("pushButton_15")
         self.gridLayout.addWidget(self.pushButton_15, 1, 0, 1, 1)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem6, 1, 1, 1, 1)
-        self.pushButton_16 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_16 = QtWidgets.QPushButton(self.layoutWidget6)
         self.pushButton_16.setObjectName("pushButton_16")
         self.gridLayout.addWidget(self.pushButton_16, 1, 2, 1, 1)
-        self.pushButton_17 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_17 = QtWidgets.QPushButton(self.layoutWidget6)
         self.pushButton_17.setObjectName("pushButton_17")
         self.gridLayout.addWidget(self.pushButton_17, 2, 0, 1, 1)
         spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem7, 2, 1, 1, 1)
-        self.pushButton_18 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_18 = QtWidgets.QPushButton(self.layoutWidget6)
         self.pushButton_18.setObjectName("pushButton_18")
         self.gridLayout.addWidget(self.pushButton_18, 2, 2, 1, 1)
-        self.pushButton_19 = QtWidgets.QPushButton(self.layoutWidget3)
+        self.pushButton_19 = QtWidgets.QPushButton(self.layoutWidget6)
         self.pushButton_19.setObjectName("pushButton_19")
         self.gridLayout.addWidget(self.pushButton_19, 3, 0, 1, 1)
         spacerItem8 = QtWidgets.QSpacerItem(128, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -291,7 +301,6 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(MainWindow.btnRelease_Click)
         self.comboBox_5.currentIndexChanged['int'].connect(MainWindow.Powerkeychanged)
         self.lineEdit_5.returnPressed.connect(MainWindow.setVehicleSpeed)
-        self.radioButton.clicked['bool'].connect(MainWindow.openDriverDoorchanged)
         self.pushButton_13.pressed.connect(MainWindow.SWC_Phonepress)
         self.pushButton_13.released.connect(MainWindow.SWC_release)
         self.pushButton_15.pressed.connect(MainWindow.SWC_VolPluspress)
@@ -321,6 +330,7 @@ class Ui_MainWindow(object):
         self.comboBox_8.currentTextChanged['QString'].connect(MainWindow.chooseProject)
         self.comboBox.currentIndexChanged['int'].connect(MainWindow.setbaudrate)
         self.comboBox_7.currentIndexChanged['int'].connect(MainWindow.setPosition)
+        self.checkBox_5.clicked['bool'].connect(MainWindow.openDriverDoorchanged)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -336,10 +346,11 @@ class Ui_MainWindow(object):
         self.comboBox_2.setItemText(0, _translate("MainWindow", "PCAN_DNGBUS1"))
         self.label_10.setText(_translate("MainWindow", "ConfigFile"))
         self.comboBox_8.setItemText(0, _translate("MainWindow", "None"))
-        self.comboBox_8.setItemText(1, _translate("MainWindow", "NGI2.0Low"))
-        self.comboBox_8.setItemText(2, _translate("MainWindow", "K215/221"))
+        self.comboBox_8.setItemText(1, _translate("MainWindow", "K215"))
+        self.comboBox_8.setItemText(2, _translate("MainWindow", "K221"))
         self.comboBox_8.setItemText(3, _translate("MainWindow", "K256"))
         self.comboBox_8.setItemText(4, _translate("MainWindow", "K218"))
+        self.comboBox_8.setItemText(5, _translate("MainWindow", "NGI2_0Low"))
         self.label_2.setText(_translate("MainWindow", "Baudrate"))
         self.comboBox.setItemText(0, _translate("MainWindow", "500 kBit/sec"))
         self.comboBox.setItemText(1, _translate("MainWindow", "1 MBit/sec"))
@@ -352,12 +363,12 @@ class Ui_MainWindow(object):
         self.comboBox_7.setItemText(3, _translate("MainWindow", "Reverse"))
         self.comboBox_7.setItemText(4, _translate("MainWindow", "Invalid"))
         self.label_3.setText(_translate("MainWindow", "Position"))
-        self.radioButton.setText(_translate("MainWindow", "OpenDriverDoor"))
         self.label_9.setText(_translate("MainWindow", "PowerKey"))
         self.comboBox_5.setItemText(0, _translate("MainWindow", "Off"))
         self.comboBox_5.setItemText(1, _translate("MainWindow", "Acc"))
         self.comboBox_5.setItemText(2, _translate("MainWindow", "Run"))
         self.comboBox_5.setItemText(3, _translate("MainWindow", "Crank"))
+        self.checkBox_5.setText(_translate("MainWindow", "OpenDriverDoor"))
         self.groupBox_4.setTitle(_translate("MainWindow", "Set Warning icon"))
         self.comboBox_3.setItemText(0, _translate("MainWindow", "None"))
         self.comboBox_3.setItemText(1, _translate("MainWindow", "Zone1"))
@@ -431,17 +442,11 @@ class Ui_MainWindow(object):
             i += 1
             self.m_PcanHandle = self.m_CHANNELS[name]
 
-    def btnInit_Click(self, MainWindow):
-        pic1 = QtGui.QPixmap("ok.jpg")
-        pic2 = QtGui.QPixmap("error1.jpg")
+    def CANstate(self):
 
-        _translate = QtCore.QCoreApplication.translate
-        baudrate = self.baudrate
-        if self.LogTest:
-            print(self.m_PcanHandle)
-
-        result = self.m_objPCANBasic.Initialize(self.m_PcanHandle, baudrate)
-
+        pic1 = QtGui.QPixmap(self.curdir+"\\ok.jpg")
+        pic2 = QtGui.QPixmap(self.curdir+"\\error.jpg")
+        # Display can state icon
         self.CANErr = QtWidgets.QLabel(self.groupBox)
         self.CANErr.setGeometry(QtCore.QRect(450, 55, 31, 21))
         self.CANErr.setStyleSheet("")
@@ -454,6 +459,16 @@ class Ui_MainWindow(object):
         self.CANOK.setPixmap(pic1)
         self.CANOK.setObjectName("CANOK")
         self.CANOK.setScaledContents(True)
+
+    def btnInit_Click(self, MainWindow):
+
+        _translate = QtCore.QCoreApplication.translate
+        baudrate = self.baudrate
+        if self.LogTest:
+            print(self.m_PcanHandle)
+
+        result = self.m_objPCANBasic.Initialize(self.m_PcanHandle, baudrate)
+        self.CANstate()
 
         if result != PCAN_ERROR_OK:
             self.flg["initsuccess"] = 0
@@ -470,9 +485,13 @@ class Ui_MainWindow(object):
             #
             self.ConfigureTraceFile()
             # MainWindow.setStatusTip(_translate("MainWindow", "CAN Status:Bus OK"))
-            self.flg["initsuccess"] = 1
-            self.BTNstate()
             self.comboBox_8.setCurrentIndex(0)  # 设置Project为None
+            self.flg["initsuccess"] = 1
+            self.comboBox_5.setCurrentIndex(0)  # Set Powerkey to Off
+            self.comboBox_7.setCurrentIndex(0)  # Set Position to Park
+            self.lineEdit_5.clear()  # Clear Speed Value
+            self.lineEdit_6.clear()  # Clear Temperature Value
+            self.BTNstate()
 
             if self.CANErr.isEnabled():
                 self.CANErr.hide()
@@ -489,9 +508,13 @@ class Ui_MainWindow(object):
         try:
             self.m_objPCANBasic.Uninitialize(self.m_PcanHandle)
             self.comboBox_2.setCurrentIndex(0)
+
             self.flg["initsuccess"] = 0
             self.flg["Confsuccess"] = 0
+            self.flg['SendNM'] = 0
             self.BTNstate()
+            self.comboBox_8.setCurrentIndex(0)  # 设置Project为None
+
             if self.CANErr.isEnabled():
                 self.CANErr.hide()
             if self.CANOK.isEnabled():
@@ -503,8 +526,6 @@ class Ui_MainWindow(object):
             self.BTNstate()
             if self.LogTest:
                 print("release failed")
-
-
 
     def setbaudrate(self):
         self.baudrate = self.m_BAUDRATES[self.comboBox.currentText()]
@@ -534,6 +555,11 @@ class Ui_MainWindow(object):
         else:
             stsRVC = False
 
+        if self.flg['SendNM']:
+            stsNM = True
+        else:
+            stsNM = False
+
         # Can state frame
         self.comboBox_2.setEnabled(stsNotConnected)  # HW Combobox
         self.pushButton.setEnabled(stsNotConnected)  # Refresh Button
@@ -544,35 +570,35 @@ class Ui_MainWindow(object):
         # self.pushButton_7.setEnabled(stsConnected)  # ChooseFile Button
 
         # State Control
-        self.comboBox_5.setEnabled(stsConnected and stsFile)  # Power Combobox
-        self.comboBox_7.setEnabled(stsConnected and stsFile and stsIG)  # Position Combobox
-        self.radioButton.setEnabled(stsConnected and stsFile)  # Opendriverdoor Button
+        self.comboBox_5.setEnabled(stsConnected and stsFile and stsNM)  # Power Combobox
+        self.comboBox_7.setEnabled(stsConnected and stsFile and stsIG and stsNM)  # Position Combobox
+        self.checkBox_5.setEnabled(stsConnected and stsFile)  # Opendriverdoor Button
 
         # Others
-        self.lineEdit_5.setEnabled(stsConnected and stsFile and stsIG)  # Speed Input box
-        self.lineEdit_6.setEnabled(stsConnected and stsFile and stsIG)  # Temperature input box
-        self.pushButton_6.setEnabled(stsConnected and stsFile)  # Chime Button
+        self.lineEdit_5.setEnabled(stsConnected and stsFile and stsIG and stsNM)  # Speed Input box
+        self.lineEdit_6.setEnabled(stsConnected and stsFile and stsIG and stsNM)  # Temperature input box
+        self.pushButton_6.setEnabled(stsConnected and stsFile and stsNM)  # Chime Button
 
         # SWC
-        self.pushButton_13.setEnabled(stsConnected and stsFile)  # SWC Button
-        self.pushButton_14.setEnabled(stsConnected and stsFile)  # SWC Button
-        self.pushButton_15.setEnabled(stsConnected and stsFile)  # SWC Button
-        self.pushButton_16.setEnabled(stsConnected and stsFile)  # SWC Button
-        self.pushButton_17.setEnabled(stsConnected and stsFile)  # SWC Button
-        self.pushButton_18.setEnabled(stsConnected and stsFile)  # SWC Button
-        self.pushButton_19.setEnabled(stsConnected and stsFile)  # SWC Button
+        self.pushButton_13.setEnabled(stsConnected and stsFile and stsNM)  # SWC Button
+        self.pushButton_14.setEnabled(stsConnected and stsFile and stsNM)  # SWC Button
+        self.pushButton_15.setEnabled(stsConnected and stsFile and stsNM)  # SWC Button
+        self.pushButton_16.setEnabled(stsConnected and stsFile and stsNM)  # SWC Button
+        self.pushButton_17.setEnabled(stsConnected and stsFile and stsNM)  # SWC Button
+        self.pushButton_18.setEnabled(stsConnected and stsFile and stsNM)  # SWC Button
+        self.pushButton_19.setEnabled(stsConnected and stsFile and stsNM)  # SWC Button
 
         # RVC
-        self.pushButton_4.setEnabled(stsConnected and stsFile and stsRVC)  # Guideline Button
-        self.pushButton_5.setEnabled(stsConnected and stsFile and stsRVC)  # Guideline Button
-        self.lineEdit_2.setEnabled(stsConnected and stsFile and stsRVC)  # Guideline input box
-        self.comboBox_3.setEnabled(stsConnected and stsFile and stsRVC)  # RVC warning symbol
-        self.comboBox_4.setEnabled(stsConnected and stsFile and stsRVC)  # RVC warning symbol
-        self.comboBox_6.setEnabled(stsConnected and stsFile and stsRVC)  # RVC warning symbol
-        self.checkBox.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
-        self.checkBox_2.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
-        self.checkBox_3.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
-        self.checkBox_4.setEnabled(stsConnected and stsFile and stsRVC)  # RVC Text
+        self.pushButton_4.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # Guideline Button
+        self.pushButton_5.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # Guideline Button
+        self.lineEdit_2.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # Guideline input box
+        self.comboBox_3.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # RVC warning symbol
+        self.comboBox_4.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # RVC warning symbol
+        self.comboBox_6.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # RVC warning symbol
+        self.checkBox.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # RVC Text
+        self.checkBox_2.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # RVC Text
+        self.checkBox_3.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # RVC Text
+        self.checkBox_4.setEnabled(stsConnected and stsFile and stsRVC and stsNM)  # RVC Text
 
     def chooseProject(self):
         import json
@@ -580,43 +606,55 @@ class Ui_MainWindow(object):
         global configdata
         curproject = self.comboBox_8.currentText()
 
-        if curproject == 'K215/221':
-            filename = "K215"
-            self.project = 0
-        elif curproject == 'K256':
-            filename = "K256"
-            self.project = 1
-        elif curproject == 'K218':
-            filename = "K218"
-            self.project = 2
-        elif curproject == 'NGI2.0Low':
-            filename = "K215"
-            self.project = 3
-        else:
-            filename = "215"
-            self.project = 0
+        try:
 
-        currentpath = os.getcwd()+'\\config.json'
-        # fileName, filetype = QtWidgets.QFileDialog.getOpenFileName(self,
-        #                                                            "选取文件",
-        #                                                            currentpath,
-        #                                                            "All Files (*);;json Files (*.json)")  # 设置文件扩展名过滤,注意用双分号间隔
+            if curproject == 'K215':
+                filename = "K215"
+                self.project = self.projectlist[1]
+            elif curproject == 'K221':
+                filename = "K221"
+                self.project = self.projectlist[2]
+            elif curproject == 'K218':
+                filename = "K218"
+                self.project = self.projectlist[3]
+            elif curproject == 'K256':
+                filename = "K256"
+                self.project = self.projectlist[4]
 
-        with open(currentpath, 'r', encoding='utf-8') as json_file:
-            try:
-                configdata0 = json.load(json_file)
-                configdata = configdata0[filename]
-                self.flg["Confsuccess"] = 1
-                self.BTNstate()
-                if self.LogTest:
-                    print("open success")
+            elif curproject == 'NGI2_0Low':
+                filename = "K215"
+                self.project = self.projectlist[5]
+            else:
+                filename = "None"
+                self.project = self.projectlist[0]
 
-            except:
-                self.flg["Confsuccess"] = 0
-                self.BTNstate()
-                self.show_criticalmessage("Error", "Enter Right Json file")
-                if self.LogTest:
-                    print("error json file")
+            if self.project != self.projectlist[0]:
+
+                currentpath = os.getcwd() + '\\config.json'
+                # fileName, filetype = QtWidgets.QFileDialog.getOpenFileName(self,
+                #                                                            "选取文件",
+                #                                                            currentpath,
+                #                                                            "All Files (*);;json Files (*.json)")  # 设置文件扩展名过滤,注意用双分号间隔
+
+                with open(currentpath, 'r', encoding='utf-8') as json_file:
+                    try:
+                        configdata0 = json.load(json_file)
+                        configdata = configdata0[self.project]
+                        self.flg["Confsuccess"] = 1
+                        self.BTNstate()
+                        if self.LogTest:
+                            print("open success")
+
+                    except:
+                        self.flg["Confsuccess"] = 0
+                        self.BTNstate()
+                        self.show_criticalmessage("Error", "Enter Right Json file")
+                        if self.LogTest:
+                            print("error json file")
+            else:
+                pass
+        except:
+            self.show_criticalmessage("Error", "No Correct Config File!")
 
     def Poweroperate(self):
         global configdata
@@ -628,17 +666,17 @@ class Ui_MainWindow(object):
 
         __class__.WriteFrame(self, id, datalen, data)
         if self.LogTest:
-            print("current power is " + currentPowerMode)
+            print(id + " -> " + str(data))
 
-        # if currentPowerMode != 'Off':
-        #     __class__.WriteFrame(self, id, datalen, data)
-        #
-        # else:
-        #     # self.Powertimer.stop()
-        #     pass
-        # self.Powertimer.killTimer(self.timer_id)
+            # if currentPowerMode != 'Off':
+            #     __class__.WriteFrame(self, id, datalen, data)
+            #
+            # else:
+            #     # self.Powertimer.stop()
+            #     pass
+            # self.Powertimer.killTimer(self.timer_id)
 
-        # print("send powerstate " + time.ctime()+" "+str(data))
+            # print("send powerstate " + time.ctime()+" "+str(data))
 
     def Powerkeychanged(self):
         global configdata
@@ -667,6 +705,11 @@ class Ui_MainWindow(object):
             self.flg["IGState"] = 1
             self.sendTemp()
             self.setVehicleSpeed()
+        elif currentPowerMode == "Off":
+            self.flg["IGState"] = 0
+            # Cancel timer under Run mode
+            self.timerflg["Cancelalltimer"] = 1
+            self.cancelalltimer(state=self.timerflg["Cancelalltimer"])  # Cancel all timer
         else:
             self.flg["IGState"] = 0
             # Cancel timer under Run mode
@@ -682,6 +725,7 @@ class Ui_MainWindow(object):
             if self.timerflg["Guidelinetimer"]:
                 self.Guidelinetimer.stop()
 
+
         self.BTNstate()
 
     def setPositiontimer(self):
@@ -694,7 +738,7 @@ class Ui_MainWindow(object):
 
         __class__.WriteFrame(self, id, datalen, self.Positiondata)
         if self.LogTest:
-            print("current Position is " + str(self.Positiondata))
+            print(id + "->" + str(self.Positiondata))
 
     def setPosition(self):
         global configdata
@@ -705,27 +749,37 @@ class Ui_MainWindow(object):
         datalen = len(configdata["ParkPosition"]['data'][currentPosition])
         data = configdata["ParkPosition"]['data'][currentPosition]
 
-        if self.project == 3:
-            if self.radioButton.isEnabled():
+        if self.project == self.projectlist[4]:  # Data For K256
+            if self.checkBox_5.isChecked():  # OpenDriverDoor
                 data[1] = "02"
             else:
                 data[1] = "00"
+        if self.project == self.projectlist[5]:  # Data For NGI2.0 Low
+            if self.checkBox_5.isChecked():  # OpenDriverDoor
+                data[0] = "80"
+            else:
+                data[0] = "00"
+
+        # if self.comboBox_7.currentText() != "Invalid":
+        #     self.checkBox.setChecked(False)
+
+        if currentPosition == "Reverse" and self.comboBox_5.currentText() == "Run":
+            self.flg["RVCOn"] = 1
+            self.sendguideline()
+            self.checkBox.setChecked(False)
+        else:
+            self.flg["RVCOn"] = 0
+            if self.timerflg["Guidelinetimer"]:
+                self.Guidelinetimer.stop()
+        self.BTNstate()
 
         self.Positiondata = data
 
         __class__.WriteFrame(self, id, datalen, self.Positiondata)
 
-        if currentPosition == "Reverse" and self.comboBox_5.currentText() == "Run":
-            self.flg["RVCOn"] = 1
-            self.sendguideline()
-            self.BTNstate()
-        else:
-            self.flg["RVCOn"] = 0
-            self.BTNstate()
-            if self.timerflg["Guidelinetimer"]:
-                self.Guidelinetimer.stop()
-
         if self.timerflg["Positiontimer"]:
+            pass
+        elif self.comboBox_5.currentText() == 'Off':
             pass
         else:
             self.Positiontimer = QTimer(self)  # 初始化一个定时器
@@ -752,6 +806,21 @@ class Ui_MainWindow(object):
         datalen = len(configdata["Set_GL_Val"]['data'])
         data = configdata["Set_GL_Val"]['data']
 
+        if self.project == self.projectlist[5]:  # For NGI2.0Low
+            if self.checkBox_2.isChecked():
+                data[6] = "60"
+            elif self.checkBox_3.isChecked():
+                data[6] = "00"
+            else:
+                data[6] = "40"
+        else:  # Not NGI2.0Low
+            if self.checkBox_2.isChecked():
+                data[0] = "A0"
+            elif self.checkBox_3.isChecked():
+                data[0] = "00"
+            else:
+                data[0] = "20"
+
         self.Guidelinedata = []
         newdata0 = []
 
@@ -761,35 +830,49 @@ class Ui_MainWindow(object):
             newdata0.append("00")
             newdata0.append("00")
         else:
-            currentGLvalue = round(float(currentGLvaluephys), 2)
+            try:
+                currentGLvalue = round(float(currentGLvaluephys), 2)
 
-            if 0 <= currentGLvalue <= 2047.9:
-                Hexvalue = hex(int(16 * currentGLvalue))
-            else:
-                ConstValue0xFFFF = 65535+1
-                Hexvalue = hex(int(16 * currentGLvalue + ConstValue0xFFFF))
+                try:
 
-            if len(Hexvalue) == 3:
-                newdata0.append("00")
-                newdata0.append(Hexvalue[-1])
-            elif len(Hexvalue) == 4:
-                newdata0.append("00")
-                newdata0.append(Hexvalue[2:])
-            elif len(Hexvalue) == 5:
-                newdata0.append(Hexvalue[2])
-                newdata0.append(Hexvalue[3:])
-            elif len(Hexvalue) == 6:
-                newdata0.append(Hexvalue[2:4])
-                newdata0.append(Hexvalue[4:])
+                    if 0 <= currentGLvalue <= 2047.9:
+                        Hexvalue = hex(int(16 * currentGLvalue))
+                    else:
+                        ConstValue0xFFFF = 65535 + 1
+                        Hexvalue = hex(int(16 * currentGLvalue + ConstValue0xFFFF))
+
+                    if len(Hexvalue) == 3:
+                        newdata0.append("00")
+                        newdata0.append(Hexvalue[-1])
+                    elif len(Hexvalue) == 4:
+                        newdata0.append("00")
+                        newdata0.append(Hexvalue[2:])
+                    elif len(Hexvalue) == 5:
+                        newdata0.append(Hexvalue[2])
+                        newdata0.append(Hexvalue[3:])
+                    elif len(Hexvalue) == 6:
+                        newdata0.append(Hexvalue[2:4])
+                        newdata0.append(Hexvalue[4:])
+                except:
+                    self.show_warningmessage("Warning", "Guideline angle value Range: -2048~2047.5")
+
+            except:
+                self.show_criticalmessage("Error", "Enter Right Guideline angle value")
 
         if self.LogTest:
-            print("Changed Data is "+str(newdata0))
+            print("Changed Data is " + str(newdata0))
 
         for i in range(len(data)):
-            if i == 1 or i == 2:
-                self.Guidelinedata.append(newdata0[i-1])
-            else:
-                self.Guidelinedata.append(data[i])
+            if self.project == self.projectlist[5]:  # For NGI2.0Low
+                if i == 4 or i == 5:
+                    self.Guidelinedata.append(newdata0[i - 4])
+                else:
+                    self.Guidelinedata.append(data[i])
+            else:  # For others
+                if i == 1 or i == 2:
+                    self.Guidelinedata.append(newdata0[i - 1])
+                else:
+                    self.Guidelinedata.append(data[i])
 
         __class__.WriteFrame(self, id, datalen, self.Guidelinedata)
 
@@ -837,22 +920,45 @@ class Ui_MainWindow(object):
                 self.ParkSysmboltimer.stop()
                 self.timerflg["ParkSysmboltimer"] = 0
 
-
     def openDriverDoorchanged(self):
         global configdata
 
-        if self.radioButton.isChecked():
-            curstate = "Open"
+        id = '621'
+        datalen = 8
+        data = ["01", "00", "00", "00", "00", "00", "00", "00"]
+        result = self.m_objPCANBasic.Initialize(self.m_PcanHandle, self.baudrate)
+        for i in range(10):
+            __class__.WriteFrame(self, id, datalen, data)
+            sleep(0.01)
+            if self.LogTest:
+                print("WakeUp")
+        self.flg['SendNM'] = 1
+
+        self.setPosition()
+
+        if self.checkBox_5.isChecked():
+
+            if self.project == self.projectlist[4]:  # Data for K256
+                self.Positiondata[1] = "02"
+            elif self.project == self.projectlist[5]:  # Data for NGI2.0Low
+                self.Positiondata[0] = "80"
+            else:
+                pass
         else:
-            curstate = "Close"
+            if self.project == self.projectlist[4]:  # Data for K256
+                self.Positiondata[1] = "00"
+            elif self.project == self.projectlist[5]:  # Data for NGI2.0Low
+                self.Positiondata[0] = "00"
+            else:
+                pass
+
         id = configdata["OpenDD"]['signal']
-        datalen = len(configdata["OpenDD"]['data'][curstate])
-        data = configdata["OpenDD"]['data'][curstate]
+        datalen = len(configdata["OpenDD"]['data']['Open'])
 
         if self.LogTest:
-            print(id+"->"+str(data))
+            print(id + "->" + str(self.Positiondata))
 
-        __class__.WriteFrame(self, id, datalen, data)
+        __class__.WriteFrame(self, id, datalen, self.Positiondata)
 
     # Others
 
@@ -889,7 +995,7 @@ class Ui_MainWindow(object):
             if self.LogTest:
                 print(id + "->" + str(data))
 
-        if self.project != 3:
+        if self.project != self.projectlist[5]:  # project for Need 0x62c
             if self.tmpcounter % 100 == 0:
                 id = configdata["SetTemperature"][2]['signal']
                 datalen = len(configdata["SetTemperature"][2]['data'])
@@ -939,13 +1045,14 @@ class Ui_MainWindow(object):
                     if self.LogTest:
                         print(id + "->" + str(data))
 
-                    id = configdata["SetTemperature"][2]['signal']
-                    datalen = len(configdata["SetTemperature"][2]['data'])
-                    data = configdata["SetTemperature"][2]['data']
-                    if self.LogTest:
-                        print(id + "->" + str(data))
+                    if self.project != self.projectlist[5]:  # 0x62c not suitable for NGI2.0Low
+                        id = configdata["SetTemperature"][2]['signal']
+                        datalen = len(configdata["SetTemperature"][2]['data'])
+                        data = configdata["SetTemperature"][2]['data']
+                        if self.LogTest:
+                            print(id + "->" + str(data))
 
-                    __class__.WriteFrame(self, id, datalen, data)
+                        __class__.WriteFrame(self, id, datalen, data)
 
                     if self.timerflg["tmptimer"]:
                         pass
@@ -964,9 +1071,9 @@ class Ui_MainWindow(object):
                         pass
 
         except:
-            self.show_criticalmessage("Error", "Enter normal number: -40~87.5 ")
+            self.show_criticalmessage("Error", "Temperature Value Range: -40~87.5 ")
             if self.LogTest:
-                print("Enter normal number")
+                print("Enter normal Temperature Value")
             else:
                 pass
 
@@ -992,7 +1099,7 @@ class Ui_MainWindow(object):
             if self.lineEdit_5.text() == "" and self.timerflg["speedtimer"]:
                 self.tmptimer.stop()
             else:
-                if self.project == 0:
+                if self.project in [self.projectlist[1], self.projectlist[2]]:
                     if 0 <= curtmpdata <= 510:
                         Hexvalue = hex(int(64 * curtmpdata))
 
@@ -1040,11 +1147,11 @@ class Ui_MainWindow(object):
 
                             self.timerflg["speedtimer"] = 1
                     else:
-                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        self.show_warningmessage("Warning", "Speed Value Range: 0~500")
                         if self.LogTest:
                             print("Enter Right Speed Value")
 
-                if self.project == 1:
+                if self.project == self.projectlist[3]:
                     if 0 <= curtmpdata <= 510:
                         Hexvalue = hex(int(64 * curtmpdata))
 
@@ -1092,11 +1199,11 @@ class Ui_MainWindow(object):
 
                             self.timerflg["speedtimer"] = 1
                     else:
-                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        self.show_warningmessage("Warning", "Speed Value Range: 0~500")
                         if self.LogTest:
                             print("Enter Right Speed Value")
 
-                if self.project == 2:
+                if self.project == self.projectlist[4]:
                     if 0 <= curtmpdata <= 510:
                         Hexvalue = hex(int(64 * curtmpdata))
 
@@ -1144,13 +1251,16 @@ class Ui_MainWindow(object):
 
                             self.timerflg["speedtimer"] = 1
                     else:
-                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        self.show_warningmessage("Warning", "Speed Value Range: 0~500")
                         if self.LogTest:
                             print("Enter Right Speed Value")
 
-                if self.project == 3:
+                if self.project == self.projectlist[5]:
                     if 0 <= curtmpdata <= 510:
-                        Hexvalue = hex(int(8 * curtmpdata))
+                        Hexvalue = hex(int(bin(int(64 * curtmpdata)) + '0000000', 2))
+
+                        if self.LogTest:
+                            print("Hexvalue for Vehicle speed is ", str(Hexvalue))
 
                         id = configdata["SetSpeed"]['signal']
                         datalen = len(configdata["SetSpeed"]['data'])
@@ -1159,18 +1269,23 @@ class Ui_MainWindow(object):
                         self.newspeeddata = []
 
                         newdata0 = []
-                        if len(Hexvalue) == 3:
+
+                        if len(Hexvalue) == 6:
                             newdata0.append("00")
-                            newdata0.append(Hexvalue[-1])
-                        elif len(Hexvalue) == 4:
-                            newdata0.append("00")
-                            newdata0.append(Hexvalue[2:])
-                        elif len(Hexvalue) == 5:
-                            newdata0.append(Hexvalue[2])
-                            newdata0.append(Hexvalue[3:])
-                        elif len(Hexvalue) == 6:
                             newdata0.append(Hexvalue[2:4])
                             newdata0.append(Hexvalue[4:])
+                        elif len(Hexvalue) == 7:
+                            newdata0.append(Hexvalue[2])
+                            newdata0.append(Hexvalue[3:5])
+                            newdata0.append(Hexvalue[5:])
+                        elif len(Hexvalue) == 8:
+                            newdata0.append(Hexvalue[2:4])
+                            newdata0.append(Hexvalue[4:6])
+                            newdata0.append(Hexvalue[6:])
+                        else:
+                            newdata0.append("00")
+                            newdata0.append("00")
+                            newdata0.append("00")
 
                         if self.LogTest:
                             print(newdata0)
@@ -1196,25 +1311,26 @@ class Ui_MainWindow(object):
 
                             self.timerflg["speedtimer"] = 1
                     else:
-                        self.show_warningmessage("Warning", "Enter normal number: 0~500 ")
+                        self.show_warningmessage("Warning", "Speed Value Range: 0~500")
                         if self.LogTest:
                             print("Enter Right Speed Value")
         except:
-            self.show_criticalmessage("Error", "Enter normal number: 0~500 ")
+            self.show_criticalmessage("Error", "Enter Right Speed Value")
             if self.LogTest:
                 print("Enter normal number")
             else:
                 pass
+
     # RVC & Guideline
 
     def GL_left(self):
 
         currentGLvaluephys = self.lineEdit_2.text()
-        if currentGLvaluephys == "" :
+        if currentGLvaluephys == "":
             self.lineEdit_2.setText("50")
         else:
             currentGLvaluephys = self.lineEdit_2.text()
-            currentGLvaluephys = int(currentGLvaluephys)+50
+            currentGLvaluephys = int(currentGLvaluephys) + 50
             self.lineEdit_2.setText(str(currentGLvaluephys))
         self.sendguideline()
 
@@ -1257,12 +1373,17 @@ class Ui_MainWindow(object):
         datalen = len(configdata["Zone"]['data'])
         data = configdata["Zone"]['data']
 
+        if self.checkBox_4.isChecked():
+            data[0] = "20"
+        else:
+            data[0] = "00"
+
         self.ParkSysmboldata = []
         for i in data:
             if i == "**":
-                self.ParkSysmboldata.append(str(currentZone2index)+str(currentZone1index))
+                self.ParkSysmboldata.append(str(currentZone2index) + str(currentZone1index))
             elif i == "0*":
-                self.ParkSysmboldata.append("0"+str(currentZone3index))
+                self.ParkSysmboldata.append("0" + str(currentZone3index))
             else:
                 self.ParkSysmboldata.append(i)
 
@@ -1351,7 +1472,6 @@ class Ui_MainWindow(object):
 
             self.timerflg["Positiontimer"] = 1
 
-
     def GLunavailable(self):
         global configdata
 
@@ -1362,6 +1482,8 @@ class Ui_MainWindow(object):
 
         if self.checkBox_2.isChecked():
             self.Guidelinedata[0] = configdata["GLUnavailable"][0]['data'][0]
+        elif self.checkBox_3.isChecked():
+            self.Guidelinedata[0] = configdata["No_GL"][0]['data'][0]
         else:
             self.Guidelinedata[0] = configdata["GLUnavailable"][1]['data'][0]
 
@@ -1394,6 +1516,8 @@ class Ui_MainWindow(object):
 
         if self.checkBox_3.isChecked():
             self.Guidelinedata[0] = configdata["No_GL"][0]['data'][0]
+        elif self.checkBox_2.isChecked():
+            self.Guidelinedata[0] = configdata["GLUnavailable"][0]['data'][0]
         else:
             self.Guidelinedata[0] = configdata["No_GL"][1]['data'][0]
 
@@ -1610,4 +1734,3 @@ class Ui_MainWindow(object):
 
     def show_warningmessage(self, title, content):
         QMessageBox.warning(self, title, content)
-
