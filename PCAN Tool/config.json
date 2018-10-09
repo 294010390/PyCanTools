@@ -1,0 +1,846 @@
+{
+	"K221": {
+		"Power signals": "Power signals",
+
+		"Power": {
+			"signal": "1F1",
+			"cycle": "100",
+			"data": {
+				"Off": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Acc": ["01", "00", "00", "00", "00", "00", "00", "00"],
+				"Run": ["02", "00", "00", "00", "00", "00", "00", "00"],
+				"Crank": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"OpenDD": {
+			"signal": "12A",
+			"cycle": "0",
+			"data": {
+				"Open": ["00", "02", "00", "00", "00", "00", "00", "00"],
+				"Close": ["00", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"Others signals": "Others signals",
+
+		"SetSpeed": {
+			"signal": "3E9",
+			"cycle": "100",
+			"data": ["*", "*", "00", "00", "00", "00", "00", "00"]
+		},
+
+		"SetTemperature": [
+			{
+				"signal": "3FC",
+				"cycle": "10",
+				"data": ["08", "08", "00", "00", "*"]
+			},
+			{
+				"signal": "425",
+				"cycle": "100",
+				"data": ["00"]
+			},
+			{
+				"signal": "62C",
+				"cycle": "1000",
+				"data": ["00"]
+			}
+		],
+
+		"SendChime": {
+			"signal": "205",
+			"cycle": "0",
+			"data": ["F6", "78", "05", "FF", "25"]
+		},
+
+		"SWC signals": "SWC signals",
+
+		"SWC_Phonepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["60"]
+		},
+		"SWC_Mutepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["70"]
+		},
+		"SWC_VolPluspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["10"]
+		},
+		"SWC_VolMinuspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["20"]
+		},
+		"SWC_Previouspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["40"]
+		},
+		"SWC_Nextpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["30"]
+		},
+		"SWC_SRCpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["50"]
+		},
+		"SWC_release": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["00"]
+		},
+
+		"RVC signals": "RVC signals",
+
+		"ParkPosition": {
+			"signal": "135",
+			"cycle": "100",
+			"data": {
+				"Park": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Neutral": ["01", "00", "00", "00", "00", "00", "00", "00"],
+				"Drive": ["02", "00", "00", "00", "00", "00", "00", "00"],
+				"Reverse": ["03", "00", "00", "00", "00", "00", "00", "00"],
+				"Invalid": ["04", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"Set_GL_Val": {
+			"signal": "1E5",
+			"cycle": "10",
+			"data": ["20", "*", "*", "00", "00", "00", "00", "00"]
+		},
+
+		"Zone": {
+			"signal": "1D4",
+			"cycle": "10",
+			"data": ["00", "00", "**", "0*"]
+		},
+
+		"RVCUnavailable": [{
+				"signal": "135",
+				"cycle": "100",
+				"data": ["04", "00", "00", "00", "00", "00", "00", "00"]
+			},
+			{
+				"signal": "135",
+				"cycle": "100",
+				"data": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		],
+		"GLUnavailable": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["A0", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+		"No_GL": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["00", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+
+		"ParkUnavailable": [{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["20", "*", "*", "*"]
+			},
+			{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["00", "*", "*", "*"]
+			}
+		]
+	},
+	"K215": {
+		"Power signals": "Power signals",
+
+		"Power": {
+			"signal": "1F1",
+			"cycle": "100",
+			"data": {
+				"Off": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Acc": ["01", "00", "00", "00", "00", "00", "00", "00"],
+				"Run": ["02", "00", "00", "00", "00", "00", "00", "00"],
+				"Crank": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"OpenDD": {
+			"signal": "12A",
+			"cycle": "0",
+			"data": {
+				"Open": ["00", "02", "00", "00", "00", "00", "00", "00"],
+				"Close": ["00", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"Others signals": "Others signals",
+
+		"SetSpeed": {
+			"signal": "3E9",
+			"cycle": "100",
+			"data": ["*", "*", "00", "00", "00", "00", "00", "00"]
+		},
+
+		"SetTemperature": [
+			{
+				"signal": "212",
+				"cycle": "10",
+				"data": ["04", "*", "00"]
+			},
+			{
+				"signal": "425",
+				"cycle": "100",
+				"data": ["00"]
+			},
+			{
+				"signal": "62C",
+				"cycle": "1000",
+				"data": ["00"]
+			}
+		],
+
+		"SendChime": {
+			"signal": "205",
+			"cycle": "0",
+			"data": ["F6", "78", "05", "FF", "25"]
+		},
+
+		"SWC signals": "SWC signals",
+
+		"SWC_Phonepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["60"]
+		},
+		"SWC_Mutepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["70"]
+		},
+		"SWC_VolPluspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["10"]
+		},
+		"SWC_VolMinuspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["20"]
+		},
+		"SWC_Previouspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["40"]
+		},
+		"SWC_Nextpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["30"]
+		},
+		"SWC_SRCpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["50"]
+		},
+		"SWC_release": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["00"]
+		},
+
+		"RVC signals": "RVC signals",
+
+		"ParkPosition": {
+			"signal": "135",
+			"cycle": "100",
+			"data": {
+				"Park": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Neutral": ["01", "00", "00", "00", "00", "00", "00", "00"],
+				"Drive": ["02", "00", "00", "00", "00", "00", "00", "00"],
+				"Reverse": ["03", "00", "00", "00", "00", "00", "00", "00"],
+				"Invalid": ["04", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"Set_GL_Val": {
+			"signal": "1E5",
+			"cycle": "10",
+			"data": ["20", "*", "*", "00", "00", "00", "00", "00"]
+		},
+
+		"Zone": {
+			"signal": "1D4",
+			"cycle": "10",
+			"data": ["00", "00", "**", "0*"]
+		},
+
+		"RVCUnavailable": [{
+				"signal": "135",
+				"cycle": "100",
+				"data": ["04", "00", "00", "00", "00", "00", "00", "00"]
+			},
+			{
+				"signal": "135",
+				"cycle": "100",
+				"data": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		],
+		"GLUnavailable": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["A0", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+		"No_GL": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["00", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+
+		"ParkUnavailable": [{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["20", "*", "*", "*"]
+			},
+			{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["00", "*", "*", "*"]
+			}
+		]
+	},
+	"K256": {
+		"Power signals": "Power signals",
+
+		"Power": {
+			"signal": "1F1",
+			"cycle": "100",
+			"data": {
+				"Off": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Acc": ["01", "00", "00", "00", "00", "00", "00", "00"],
+				"Run": ["02", "00", "00", "00", "00", "00", "00", "00"],
+				"Crank": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"OpenDD": {
+			"signal": "12A",
+			"cycle": "0",
+			"data": {
+				"Open": ["00", "02", "00", "00"],
+				"Close": ["00", "00", "00", "00"]
+			}
+		},
+
+		"Others signals": "Others signals",
+
+		"SetSpeed": {
+			"signal": "3E9",
+			"cycle": "100",
+			"data": ["*", "*", "00", "00", "00", "00", "00", "00"]
+		},
+
+		"SetTemperature": [{
+				"signal": "3FC",
+				"cycle": "10",
+				"data": ["00", "00", "00", "*", "00"]
+			},
+			{
+				"signal": "425",
+				"cycle": "100",
+				"data": ["00"]
+			},
+			{
+				"signal": "62C",
+				"cycle": "1000",
+				"data": ["00"]
+			}
+		],
+
+		"SendChime": {
+			"signal": "6F1",
+			"cycle": "0",
+			"data": ["06", "40", "00"]
+		},
+
+		"SWC signals": "SWC signals",
+
+		"SWC_Phonepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["60"]
+		},
+		"SWC_Mutepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["70"]
+		},
+		"SWC_VolPluspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["10"]
+		},
+		"SWC_VolMinuspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["20"]
+		},
+		"SWC_Previouspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["40"]
+		},
+		"SWC_Nextpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["30"]
+		},
+		"SWC_SRCpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["50"]
+		},
+		"SWC_release": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["00"]
+		},
+
+		"RVC signals": "RVC signals",
+
+		"ParkPosition": {
+			"signal": "12A",
+			"cycle": "100",
+			"data": {
+				"Park": ["00", "00", "00", "00"],
+				"Neutral": ["00", "00", "00", "01"],
+				"Drive": ["00", "00", "00", "02"],
+				"Reverse": ["00", "00", "00", "03"],
+				"Invalid": ["00", "00", "00", "04"]
+			}
+		},
+
+		"Set_GL_Val": {
+			"signal": "1E5",
+			"cycle": "10",
+			"data": ["20", "*", "*", "00", "00", "00", "00", "00"]
+		},
+
+		"Zone": {
+			"signal": "1D4",
+			"cycle": "10",
+			"data": ["00", "00", "**", "0*"]
+		},
+
+		"RVCUnavailable": [{
+				"signal": "12A",
+				"cycle": "100",
+				"data": ["00", "00", "00", "04"]
+			},
+			{
+				"signal": "12A",
+				"cycle": "100",
+				"data": ["00", "00", "00", "03"]
+			}
+		],
+		"GLUnavailable": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["A0", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+		"No_GL": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["00", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+
+		"ParkUnavailable": [{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["20", "*", "*", "*"]
+			},
+			{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["00", "*", "*", "*"]
+			}
+		]
+	},
+	"K218": {
+	
+		"Power signals": "Power signals",
+
+		"Power": {
+			"signal": "1F1",
+			"cycle": "100",
+			"data": {
+				"Off": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Acc": ["01", "00", "00", "00", "00", "00", "00", "00"],
+				"Run": ["02", "00", "00", "00", "00", "00", "00", "00"],
+				"Crank": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"OpenDD": {
+			"signal": "12A",
+			"cycle": "0",
+			"data": {
+				"Open": ["00", "02", "00", "00", "00", "00", "00", "00"],
+				"Close": ["00", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"Others signals": "Others signals",
+
+		"SetSpeed": {
+			"signal": "3E9",
+			"cycle": "100",
+			"data": ["*", "*", "00", "00", "00", "00", "00", "00"]
+		},
+
+		"SetTemperature": [
+			{
+				"signal": "212",
+				"cycle": "10",
+				"data": ["04", "*", "00"]
+			},
+			{
+				"signal": "425",
+				"cycle": "100",
+				"data": ["00"]
+			},
+			{
+				"signal": "62C",
+				"cycle": "1000",
+				"data": ["00"]
+			}
+		],
+
+		"SendChime": {
+			"signal": "205",
+			"cycle": "0",
+			"data": ["F6", "78", "05", "FF", "25"]
+		},
+
+		"SWC signals": "SWC signals",
+
+		"SWC_Phonepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["60"]
+		},
+		"SWC_Mutepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["70"]
+		},
+		"SWC_VolPluspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["10"]
+		},
+		"SWC_VolMinuspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["20"]
+		},
+		"SWC_Previouspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["40"]
+		},
+		"SWC_Nextpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["30"]
+		},
+		"SWC_SRCpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["50"]
+		},
+		"SWC_release": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["00"]
+		},
+
+		"RVC signals": "RVC signals",
+
+		"ParkPosition": {
+			"signal": "135",
+			"cycle": "100",
+			"data": {
+				"Park": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Neutral": ["01", "00", "00", "00", "00", "00", "00", "00"],
+				"Drive": ["02", "00", "00", "00", "00", "00", "00", "00"],
+				"Reverse": ["03", "00", "00", "00", "00", "00", "00", "00"],
+				"Invalid": ["04", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"Set_GL_Val": {
+			"signal": "1E5",
+			"cycle": "10",
+			"data": ["20", "*", "*", "00", "00", "00", "00", "00"]
+		},
+
+		"Zone": {
+			"signal": "1D4",
+			"cycle": "10",
+			"data": ["00", "00", "**", "0*"]
+		},
+
+		"RVCUnavailable": [{
+				"signal": "135",
+				"cycle": "100",
+				"data": ["04", "00", "00", "00", "00", "00", "00", "00"]
+			},
+			{
+				"signal": "135",
+				"cycle": "100",
+				"data": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		],
+		"GLUnavailable": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["A0", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+		"No_GL": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["00", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+
+		"ParkUnavailable": [{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["20", "*", "*", "*"]
+			},
+			{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["00", "*", "*", "*"]
+			}
+		]
+	},
+	"NGI2_0Low": {
+	
+		"Power signals": "Power signals",
+		"Power": {
+			"signal": "207",
+			"cycle": "100",
+			"data": {
+				"Off": ["00", "00", "00", "00", "00", "00", "00", "00"],
+				"Acc": ["00", "00", "00", "00", "00", "00", "01", "00"],
+				"Run": ["00", "00", "00", "00", "00", "00", "02", "00"],
+				"Crank": ["00", "00", "00", "00", "00", "00", "03", "00"]
+			}
+		},
+
+		"OpenDD": {
+			"signal": "12B",
+			"cycle": "0",
+			"data": {
+				"Open": ["80", "00", "00", "00", "00", "00"],
+				"Close": ["00", "00", "00", "00", "00", "00"]
+			}
+		},
+
+		"Others signals": "Others signals",
+
+		"SetSpeed": {
+			"signal": "3FF",
+			"cycle": "100",
+			"data": ["00", "00", "00", "00", "*", "*", "*"]
+		},
+
+		"SetTemperature": [{
+				"signal": "3FC",
+				"cycle": "10",
+				"data": ["00", "00", "00", "*", "00"]
+			},
+			{
+				"signal": "425",
+				"cycle": "100",
+				"data": ["00"]
+			}
+		],
+
+		"SendChime": {
+			"signal": "6F1",
+			"cycle": "0",
+			"data": ["06", "40", "00"]
+		},
+
+		"SWC signals": "SWC signals",
+
+		"SWC_Phonepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["10"]
+		},
+		"SWC_Mutepress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["80"]
+		},
+		"SWC_VolPluspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["04"]
+		},
+		"SWC_VolMinuspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["08"]
+		},
+		"SWC_Previouspress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["40"]
+		},
+		"SWC_Nextpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["20"]
+		},
+		"SWC_SRCpress": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["02"]
+		},
+		"SWC_release": {
+			"signal": "21C",
+			"cycle": "0",
+			"data": ["00"]
+		},
+
+		"RVC signals": "RVC signals",
+
+		"ParkPosition": {
+			"signal": "12B",
+			"cycle": "100",
+			"data": {
+				"Park": ["00", "00", "00", "00", "00", "00"],
+				"Neutral": ["00", "00", "10", "00", "00", "00"],
+				"Drive": ["00", "00", "20", "00", "00", "00"],
+				"Reverse": ["00", "00", "30", "00", "00", "00"],
+				"Invalid": ["00", "00", "40", "00", "00", "00"]
+			}
+		},
+
+		"Set_GL_Val": {
+			"signal": "1E7",
+			"cycle": "10",
+			"data": ["00", "00", "00", "00", "00", "00", "40", "00"]
+		},
+
+		"Zone": {
+			"signal": "1D4",
+			"cycle": "10",
+			"data": ["00", "00", "**", "0*"]
+		},
+
+		"RVCUnavailable": [{
+				"signal": "12B",
+				"cycle": "100",
+				"data": ["00", "00", "40", "00", "00", "00"]
+			},
+			{
+				"signal": "135",
+				"cycle": "100",
+				"data": ["03", "00", "00", "00", "00", "00", "00", "00"]
+			}
+		],
+		"GLUnavailable": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["A0", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+		"No_GL": [{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["00", "*", "*", "*", "*", "*", "*", "*"]
+			},
+			{
+				"signal": "1E5",
+				"cycle": "100",
+				"data": ["20", "*", "*", "*", "*", "*", "*", "*"]
+			}
+		],
+
+		"ParkUnavailable": [{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["20", "*", "*", "*"]
+			},
+			{
+				"signal": "1D4",
+				"cycle": "10",
+				"data": ["00", "*", "*", "*"]
+			}
+		]
+	}
+}
